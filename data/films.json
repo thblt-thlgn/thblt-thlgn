@@ -1,0 +1,20 @@
+{
+  "_comment": "Frozen all-time IMDb aggregates. IMDb has no ratings API, its RSS feeds are deprecated and robots.txt disallows crawling, so this is the one block on the page that does not self-update. The cell carries its own 'as of' marker for that reason. Letterboxd RSS would make it live and is a clean drop-in upgrade.",
+  "asOf": "July 2026",
+  "rated": 1103,
+  "watchlist": 677,
+  "sample": {
+    "_comment": "The average comparison was computed on the 250 titles rated by both Thibault and enough IMDb users to be meaningful, not on all 1103. The distribution below is that same sample, so it must never be described as a distribution over the full 1103.",
+    "titles": 250,
+    "averageRating": 7.09,
+    "imdbAverageRating": 7.16,
+    "distribution": {
+      "10": 2,
+      "9": 15,
+      "8": 72,
+      "7": 83,
+      "6": 71,
+      "5": 7
+    }
+  }
+}
