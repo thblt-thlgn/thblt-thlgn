@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-31T16:39:42.365Z",
+  "repository": "aistos-tech/debt-collection",
+  "models": 54,
+  "migrations": 215,
+  "gritRules": 13,
+  "testFiles": 376,
+  "tsconfigs": 17,
+  "inngestFunctions": 37,
+  "apps": 4,
+  "packages": 9,
+  "typescriptLines": 179680,
+  "firstCommit": "2025-07-15"
+}

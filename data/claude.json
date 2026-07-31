@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-07-31T16:39:42.365Z",
+  "window": {
+    "from": "2025-07-31T16:39:42.365Z",
+    "to": "2026-07-31T16:39:42.365Z",
+    "days": 365
+  },
+  "commits": {
+    "total": 8620,
+    "coAuthored": 2852,
+    "share": 33.1
+  },
+  "lines": {
+    "added": 422270,
+    "removed": 186763
+  },
+  "models": [
+    {
+      "name": "Opus 4.8",
+      "commits": 1223
+    },
+    {
+      "name": "Opus 4.6",
+      "commits": 790
+    },
+    {
+      "name": "Opus 4.7",
+      "commits": 259
+    },
+    {
+      "name": "Opus 5",
+      "commits": 176
+    },
+    {
+      "name": "Fable 5",
+      "commits": 157
+    },
+    {
+      "name": "Opus 4.5",
+      "commits": 91
+    },
+    {
+      "name": "Sonnet 4.6",
+      "commits": 27
+    },
+    {
+      "name": "Sonnet 4.5",
+      "commits": 20
+    },
+    {
+      "name": "Haiku 4.5",
+      "commits": 3
+    }
+  ]
+}
