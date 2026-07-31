@@ -5,13 +5,13 @@ I build debt-collection software that tries hard not to be unpleasant about it.
 Today that is `54` data models · `215` migrations · `13` custom lint
 rules whose only job is stopping AI agents from repeating a mistake.
 
-Of the `4,625` contributions on this profile in the past year,
-`4,616` are anonymous green squares. You'll have to take my word for it —
+Of the `4,628` contributions on this profile in the past year,
+`4,618` are anonymous green squares. You'll have to take my word for it —
 *ou me croire sur parole.*
 
 |  |  |
 | :-- | :-- |
-| <h3>📦 What I ship</h3> `4,625` contributions <br> `226` of `366` active days <br> TypeScript `84.1`% <br> Vue `7.8`% <br> ▁▂▄▅▄▄▅▄▃▃▆█ <br><br> Across `53` repositories. Almost all of it private. <br> <sub>rolling 365 days</sub> | <h3>🤖 What Claude ships for me</h3> `2,852` of `8,620` commits co-authored — `33`% <br> `+422,270` / `−186,763` <br><br> Opus 4.8 `1,223` <br> Opus 4.6 `790` <br> Opus 4.7 `259` <br><br> I review all of it. Allegedly. <br> <sub>rolling 365 days</sub> |
+| <h3>📦 What I ship</h3> `4,628` contributions <br> `226` of `366` active days <br> TypeScript `91.8`% <br> Vue `3.2`% <br> ▁▂▄▅▄▄▅▄▃▃▆█ <br><br> Across `53` repositories. Almost all of it private. <br> <sub>rolling 365 days</sub> | <h3>🤖 What Claude ships for me</h3> `2,852` of `8,626` commits co-authored — `33`% <br> `+422,270` / `−186,763` <br><br> Opus 4.8 `1,223` <br> Opus 4.6 `790` <br> Opus 4.7 `259` <br><br> I review all of it. Allegedly. <br> <sub>rolling 365 days</sub> |
 | <h3>🎬 What I watch</h3> `1,103` films rated <br> `677` on the watchlist <br> `7.09` avg — `0.07` under <br> IMDb on `250` shared titles <br> `2` perfect `10`s in there <br><br> Statistically indistinguishable from everyone else. That's the joke. <br> <sub>as of July 2026</sub> | <h3>💿 What I spin</h3> `86` records, `100`% vinyl <br> Rock `54` · Pop `22` <br> Funk / Soul `20` <br> Dire Straits · Fleetwood Mac · Michael Kiwanuka — `4` each <br><br> Nothing at all from the `1990`s. No idea either. <br> <sub>collection as it stands</sub> |
 | <h3>🌦☔️ Paris, mostly rain</h3> `74` rainy days this year <br> `448.9` mm so far <br> ▄▅█▃▂▂▄▆▃▂▂▁ <br><br> Bio says "rain addict". The data agrees. <br> <sub>1 Jan → 28 July 2026 · a rainy day is ≥ 1 mm</sub> | <h3>🔗 Elsewhere</h3> [Photographs](https://thibault.theologien.fr) <br> [LinkedIn](https://www.linkedin.com/in/thibault-theologien/) <br> [Aïstos](https://aistos.fr) <br><br> [We're hiring →](https://aistos.fr) |
 
