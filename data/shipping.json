@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-31T16:39:42.365Z",
+  "generatedAt": "2026-07-31T17:23:40.024Z",
   "window": {
-    "from": "2025-07-31T16:39:42.365Z",
-    "to": "2026-07-31T16:39:42.365Z",
+    "from": "2025-07-31T17:23:40.024Z",
+    "to": "2026-07-31T17:23:40.024Z",
     "days": 365
   },
   "contributions": {
-    "total": 4625,
-    "private": 4616,
-    "public": 9,
+    "total": 4628,
+    "private": 4618,
+    "public": 10,
     "activeDays": 226,
     "calendarDays": 366
   },
@@ -1475,63 +1475,64 @@
     },
     {
       "date": "2026-07-31",
-      "count": 52
+      "count": 55
     }
   ],
   "repositories": {
     "scanned": 53,
+    "active": 16,
     "private": 38,
     "public": 15
   },
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 573224,
-      "share": 84.1
+      "lines": 422074,
+      "share": 91.8
     },
     {
       "name": "Vue",
-      "lines": 53102,
-      "share": 7.8
-    },
-    {
-      "name": "JavaScript",
-      "lines": 23702,
-      "share": 3.5
+      "lines": 14911,
+      "share": 3.2
     },
     {
       "name": "SQL",
-      "lines": 12886,
-      "share": 1.9
-    },
-    {
-      "name": "CSS",
-      "lines": 7117,
-      "share": 1
+      "lines": 11248,
+      "share": 2.4
     },
     {
       "name": "Shell",
-      "lines": 4413,
-      "share": 0.6
+      "lines": 4188,
+      "share": 0.9
     },
     {
-      "name": "Prisma",
-      "lines": 2668,
+      "name": "JavaScript",
+      "lines": 1911,
       "share": 0.4
     },
     {
-      "name": "HTML",
-      "lines": 2172,
-      "share": 0.3
+      "name": "Prisma",
+      "lines": 1753,
+      "share": 0.4
     },
     {
       "name": "Python",
-      "lines": 2130,
+      "lines": 1567,
+      "share": 0.3
+    },
+    {
+      "name": "CSS",
+      "lines": 1213,
       "share": 0.3
     },
     {
       "name": "Lua",
       "lines": 363,
+      "share": 0.1
+    },
+    {
+      "name": "HTML",
+      "lines": 345,
       "share": 0.1
     },
     {
