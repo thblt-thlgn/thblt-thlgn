@@ -24,11 +24,59 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 
 <!-- block:grid -->
 
-|  |  |
-| :-- | :-- |
-| <h3>📦 What I ship</h3> `{{contributionsTotal}}` contributions <br> `{{activeDays}}` of `{{calendarDays}}` active days <br> {{languageOne}} <br> {{languageTwo}} <br> {{shippingSparkline}} <br><br> Across `{{repositoryCount}}` {{repositoryNoun}}. Almost all of it private. <br> <sub>rolling 365 days</sub> | <h3>🤖 What Claude ships for me</h3> `{{claudeCoAuthored}}` of `{{claudeCommits}}` commits co-authored — `{{claudeShare}}`% <br> `+{{linesAdded}}` / `−{{linesRemoved}}` <br><br> {{modelOne}} <br> {{modelTwo}} <br> {{modelThree}} <br><br> I review all of it. Allegedly. <br> <sub>rolling 365 days</sub> |
-| <h3>🎬 What I watch</h3> `{{filmsRated}}` films rated <br> `{{filmsWatchlist}}` on the watchlist <br> `{{filmsAverage}}` avg — `{{filmsDelta}}` under <br> IMDb on `{{filmsSample}}` shared titles <br> `{{filmsTens}}` perfect `10`s in there <br><br> Statistically indistinguishable from everyone else. That's the joke. <br> <sub>as of {{filmsAsOf}}</sub> | <h3>💿 What I spin</h3> `{{vinylRecords}}` records, `{{vinylShare}}`% vinyl <br> {{genreOne}} · {{genreTwo}} <br> {{genreThree}} <br> {{vinylArtists}} — `{{vinylArtistCount}}` each <br><br> {{?vinylGapDecades}}Nothing at all from the {{vinylGapDecades}}. No idea either.{{/}}{{?vinylNoGap}}Every decade since the `{{vinylFirstDecade}}`s, without a gap. Suspicious.{{/}} <br> <sub>collection as it stands</sub> |
-| <h3>🌦☔️ Paris, mostly rain</h3> `{{rainyDays}}` rainy days this year <br> `{{rainMillimetres}}` mm so far <br> {{rainSparkline}} <br><br> Bio says "rain addict". The data agrees. <br> <sub>1 Jan → {{rainEndDate}} · a rainy day is ≥ 1 mm</sub> | <h3>🔗 Elsewhere</h3> [Photographs](https://thibault.theologien.fr) <br> [LinkedIn](https://www.linkedin.com/in/thibault-theologien/) <br> [Aïstos](https://aistos.fr) <br><br> [We're hiring →](https://aistos.fr) |
+### 📦 What I ship
+
+`{{contributionsTotal}}` contributions across `{{repositoryCount}}` {{repositoryNoun}}, almost all private.<br>
+`{{activeDays}}` of `{{calendarDays}}` days had at least one.<br>
+{{languageOne}} · {{languageTwo}}<br>
+{{shippingSparkline}}
+
+<sub>rolling 365 days</sub>
+
+### 🤖 What Claude ships for me
+
+`{{claudeCoAuthored}}` of `{{claudeCommits}}` commits co-authored — `{{claudeShare}}`%<br>
+`+{{linesAdded}}` / `−{{linesRemoved}}` lines<br>
+{{modelOne}} · {{modelTwo}} · {{modelThree}}
+
+I review all of it. Allegedly.
+
+<sub>rolling 365 days</sub>
+
+### 🎬 What I watch
+
+`{{filmsRated}}` films rated · `{{filmsWatchlist}}` on the watchlist<br>
+`{{filmsAverage}}` average — `{{filmsDelta}}` under IMDb on `{{filmsSample}}` shared titles<br>
+`{{filmsTens}}` perfect `10`s in there
+
+Statistically indistinguishable from everyone else. That's the joke.
+
+<sub>as of {{filmsAsOf}}</sub>
+
+### 💿 What I spin
+
+`{{vinylRecords}}` records, `{{vinylShare}}`% vinyl<br>
+{{genreOne}} · {{genreTwo}} · {{genreThree}}<br>
+{{vinylArtists}} — `{{vinylArtistCount}}` each
+
+{{?vinylGapDecades}}Nothing at all from the {{vinylGapDecades}}. No idea either.{{/}}{{?vinylNoGap}}Every decade since the `{{vinylFirstDecade}}`s, without a gap. Suspicious.{{/}}
+
+<sub>collection as it stands</sub>
+
+### 🌦☔️ Paris, mostly rain
+
+`{{rainyDays}}` rainy days this year · `{{rainMillimetres}}` mm so far<br>
+{{rainSparkline}}
+
+Bio says "rain addict". The data agrees.
+
+<sub>1 Jan → {{rainEndDate}} · a rainy day is ≥ 1 mm</sub>
+
+### 🔗 Elsewhere
+
+[Photographs](https://thibault.theologien.fr) · [LinkedIn](https://www.linkedin.com/in/thibault-theologien/) · [Aïstos](https://aistos.fr)
+
+**[We're hiring →](https://aistos.fr)**
 
 <!-- block:footer -->
 
