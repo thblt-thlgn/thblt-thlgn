@@ -9,11 +9,46 @@ Of the `4,628` contributions on this profile in the past year,
 `4,618` are anonymous green squares. You'll have to take my word for it —
 *ou me croire sur parole.*
 
-|  |  |
-| :-- | :-- |
-| <h3>📦 What I ship</h3> `4,628` contributions <br> `226` of `366` active days <br> TypeScript `91.8%` <br> Vue `3.2%` <br> ▁▂▄▅▄▄▅▄▃▃▆█ <br><br> Across `16` repositories. <br> Almost all of it private. <br><br> <sub>rolling 365 days</sub> | <h3>🤖 What Claude ships</h3> `2,852` of `8,626` commits <br> co-authored — `33%` <br> `+422,270` / `−186,763` <br><br> Opus 4.8 `1,223` <br> Opus 4.6 `790` <br> Opus 4.7 `259` <br><br> I review all of it. Allegedly. <br><br> <sub>rolling 365 days</sub> |
-| <h3>🎬 What I watch</h3> `1,103` films rated <br> `677` on the watchlist <br> `7.09` avg — `0.07` under <br> IMDb on `250` titles <br> only `2` scored `10` <br><br> Statistically indistinguishable from everyone else. That's the joke. <br><br> <sub>as of July 2026</sub> | <h3>💿 What I spin</h3> `86` records, `100%` vinyl <br> Rock `54` · Pop `22` <br> Funk / Soul `20` <br> Dire Straits · Fleetwood Mac · Michael Kiwanuka <br> at `4` each <br><br> Nothing at all from the `1990`s. No idea either. <br><br> <sub>collection as it stands</sub> |
-| <h3>🌦☔️ Paris, mostly rain</h3> `74` rainy days this year <br> `448.9` mm so far <br> ▄▅█▃▂▂▄▆▃▂▂▁ <br><br> Bio says "rain addict". The data agrees. <br><br> <sub>1 Jan → 28 July 2026</sub> <br> <sub>a rainy day is ≥ 1 mm</sub> | <h3>🔗 Elsewhere</h3> [Photographs](https://thibault.theologien.fr) <br> [LinkedIn](https://www.linkedin.com/in/thibault-theologien/) <br> [Aïstos](https://aistos.fr) <br><br> **[We're hiring →](https://www.linkedin.com/company/aistos/jobs/)** |
+### 📦 What I ship
+
+`4,628` contributions across `16` repositories, almost all
+private · `226` of `366` days had at least one · TypeScript `91.8%` ·
+Vue `3.2%` · ▁▂▄▅▄▄▅▄▃▃▆█ · <sub>rolling 365 days</sub>
+
+### 🤖 What Claude ships for me
+
+`2,852` of `8,626` commits co-authored — `33%` ·
+`+422,270` / `−186,763` lines · Opus 4.8 `1,223` · Opus 4.6 `790` · Opus 4.7 `259` ·
+<sub>rolling 365 days</sub>
+
+I review all of it. Allegedly.
+
+### 🎬 What I watch
+
+`1,103` films rated · `677` on the watchlist · `7.09` average,
+`0.07` under IMDb on `250` shared titles · only `2` scored `10` ·
+<sub>as of July 2026</sub>
+
+Statistically indistinguishable from everyone else. That's the joke.
+
+### 💿 What I spin
+
+`86` records, `100%` vinyl · Rock `54` · Pop `22` · Funk / Soul `20` ·
+Dire Straits · Fleetwood Mac · Michael Kiwanuka at `4` each · <sub>collection as it stands</sub>
+
+Nothing at all from the `1990`s. No idea either.
+
+### 🌦☔️ Paris, mostly rain
+
+`74` rainy days this year · `448.9` mm so far · ▄▅█▃▂▂▄▆▃▂▂▁ ·
+<sub>1 Jan → 28 July 2026, a rainy day is ≥ 1 mm</sub>
+
+Bio says "rain addict". The data agrees.
+
+### 🔗 Elsewhere
+
+[Photographs](https://thibault.theologien.fr) ·
+[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) · [Aïstos](https://aistos.fr)
 
 **We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
