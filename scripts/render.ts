@@ -16,7 +16,7 @@ const zShipping = z.object({
     calendarDays: z.number(),
   }),
   daily: z.array(z.object({ date: z.string(), count: z.number() })),
-  repositories: z.object({ scanned: z.number() }),
+  repositories: z.object({ scanned: z.number(), active: z.number() }),
   languages: z.array(
     z.object({ name: z.string(), lines: z.number(), share: z.number() }),
   ),
@@ -157,9 +157,11 @@ const main = async () => {
     contributionsPrivate: number(shipping.contributions.private),
     activeDays: number(shipping.contributions.activeDays),
     calendarDays: number(shipping.contributions.calendarDays),
-    repositoryCount: number(shipping.repositories.scanned),
+    /* The repositories actually committed to, not every one the App can read —
+       "across 53 repositories" counts dormant side projects as places I work. */
+    repositoryCount: number(shipping.repositories.active),
     repositoryNoun:
-      shipping.repositories.scanned === 1 ? "repository" : "repositories",
+      shipping.repositories.active === 1 ? "repository" : "repositories",
     languageOne: languageLine(shipping.languages, 0),
     languageTwo: languageLine(shipping.languages, 1),
     shippingSparkline: sparkline({
