@@ -81,7 +81,7 @@ const languageLine = (
       `languages: fewer than ${index + 1} languages were counted`,
     );
   }
-  return `${language.name} \`${language.share}\`%`;
+  return `${language.name} \`${language.share}%\``;
 };
 
 const modelLine = (
@@ -172,7 +172,7 @@ const main = async () => {
 
     claudeCommits: number(claude.commits.total),
     claudeCoAuthored: number(claude.commits.coAuthored),
-    claudeShare: String(Math.round(claude.commits.share)),
+    claudeShare: `${Math.round(claude.commits.share)}%`,
     linesAdded: number(claude.lines.added),
     linesRemoved: number(claude.lines.removed),
     modelOne: modelLine(claude.models, 0),
@@ -190,7 +190,7 @@ const main = async () => {
     filmsAsOf: films.asOf,
 
     vinylRecords: number(vinyl.records),
-    vinylShare: String(vinyl.vinylShare),
+    vinylShare: `${vinyl.vinylShare}%`,
     genreOne: genre(0),
     genreTwo: genre(1),
     genreThree: genre(2),
