@@ -6,12 +6,19 @@
     - a computed value no template token consumes also aborts, so a figure cannot go missing quietly
     - {{?token}}…{{/}} keeps that segment only when the token has a non-empty value
 
-  LAYOUT RULE — read before editing the grid.
-  GitHub strips CSS, so there is no media query: one layout serves 375px and desktop alike. The
-  two-column table works only while every cell line stays under ~26 characters, because at 375px
-  each column is ~160px. Measured: at 26 chars the grid holds; the same cells written as full
-  sentences wrapped four to five times and the page ran twice as tall. Keep cell lines short and
-  telegraphic. Prose belongs in the header and the kickers, never in a stat line.
+  LAYOUT — two things were measured on the live page, so neither needs retrying.
+
+  1. Do NOT reintroduce <br>. GitHub strips CSS, so natural wrapping is the only responsive
+     mechanism there is; a hard break pins every line to one width. Paragraphs left to wrap fill
+     95-99% of the desktop column, the same copy broken with <br> filled 37-48% and ran twice as
+     tall. Separate facts with · and let them flow.
+
+  2. Do NOT reinstate the two-column table. It was tried twice. At 375px the readme column is
+     ~343px, GitHub splits the two columns unevenly (~200/~130px), <code> padding cuts the real
+     budget to ~18 characters — "`226` of `366` active days" is 25 and cannot fit — and <td>
+     defaults to vertical-align:middle, which GitHub does not override, so the shorter cell floats
+     mid-height. The grid reads well on desktop and badly on a phone, and there is no media query
+     to hold both.
 
   Do not edit README.md — it is generated.
 -->
@@ -29,13 +36,48 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 `{{contributionsPrivate}}` are anonymous green squares. You'll have to take my word for it —
 *ou me croire sur parole.*
 
-<!-- block:grid -->
+<!-- block:sections -->
 
-|  |  |
-| :-- | :-- |
-| <h3>📦 What I ship</h3> `{{contributionsTotal}}` contributions <br> `{{activeDays}}` of `{{calendarDays}}` active days <br> {{languageOne}} <br> {{languageTwo}} <br> {{shippingSparkline}} <br><br> Across `{{repositoryCount}}` {{repositoryNoun}}. <br> Almost all of it private. <br><br> <sub>rolling 365 days</sub> | <h3>🤖 What Claude ships</h3> `{{claudeCoAuthored}}` of `{{claudeCommits}}` commits <br> co-authored — `{{claudeShare}}` <br> `+{{linesAdded}}` / `−{{linesRemoved}}` <br><br> {{modelOne}} <br> {{modelTwo}} <br> {{modelThree}} <br><br> I review all of it. Allegedly. <br><br> <sub>rolling 365 days</sub> |
-| <h3>🎬 What I watch</h3> `{{filmsRated}}` films rated <br> `{{filmsWatchlist}}` on the watchlist <br> `{{filmsAverage}}` avg — `{{filmsDelta}}` under <br> IMDb on `{{filmsSample}}` titles <br> only `{{filmsTens}}` scored `10` <br><br> Statistically indistinguishable from everyone else. That's the joke. <br><br> <sub>as of {{filmsAsOf}}</sub> | <h3>💿 What I spin</h3> `{{vinylRecords}}` records, `{{vinylShare}}` vinyl <br> {{genreOne}} · {{genreTwo}} <br> {{genreThree}} <br> {{vinylArtists}} <br> at `{{vinylArtistCount}}` each <br><br> {{?vinylGapDecades}}Nothing at all from the {{vinylGapDecades}}. No idea either.{{/}}{{?vinylNoGap}}Every decade since the `{{vinylFirstDecade}}`s. Suspicious.{{/}} <br><br> <sub>collection as it stands</sub> |
-| <h3>🌦☔️ Paris, mostly rain</h3> `{{rainyDays}}` rainy days this year <br> `{{rainMillimetres}}` mm so far <br> {{rainSparkline}} <br><br> Bio says "rain addict". The data agrees. <br><br> <sub>1 Jan → {{rainEndDate}}</sub> <br> <sub>a rainy day is ≥ 1 mm</sub> | <h3>🔗 Elsewhere</h3> [Photographs](https://thibault.theologien.fr) <br> [LinkedIn](https://www.linkedin.com/in/thibault-theologien/) <br> [Aïstos](https://aistos.fr) <br><br> **[We're hiring →](https://www.linkedin.com/company/aistos/jobs/)** |
+### 📦 What I ship
+
+`{{contributionsTotal}}` contributions across `{{repositoryCount}}` {{repositoryNoun}}, almost all
+private · `{{activeDays}}` of `{{calendarDays}}` days had at least one · {{languageOne}} ·
+{{languageTwo}} · {{shippingSparkline}} · <sub>rolling 365 days</sub>
+
+### 🤖 What Claude ships for me
+
+`{{claudeCoAuthored}}` of `{{claudeCommits}}` commits co-authored — `{{claudeShare}}` ·
+`+{{linesAdded}}` / `−{{linesRemoved}}` lines · {{modelOne}} · {{modelTwo}} · {{modelThree}} ·
+<sub>rolling 365 days</sub>
+
+I review all of it. Allegedly.
+
+### 🎬 What I watch
+
+`{{filmsRated}}` films rated · `{{filmsWatchlist}}` on the watchlist · `{{filmsAverage}}` average,
+`{{filmsDelta}}` under IMDb on `{{filmsSample}}` shared titles · only `{{filmsTens}}` scored `10` ·
+<sub>as of {{filmsAsOf}}</sub>
+
+Statistically indistinguishable from everyone else. That's the joke.
+
+### 💿 What I spin
+
+`{{vinylRecords}}` records, `{{vinylShare}}` vinyl · {{genreOne}} · {{genreTwo}} · {{genreThree}} ·
+{{vinylArtists}} at `{{vinylArtistCount}}` each · <sub>collection as it stands</sub>
+
+{{?vinylGapDecades}}Nothing at all from the {{vinylGapDecades}}. No idea either.{{/}}{{?vinylNoGap}}Every decade since the `{{vinylFirstDecade}}`s, without a gap. Suspicious.{{/}}
+
+### 🌦☔️ Paris, mostly rain
+
+`{{rainyDays}}` rainy days this year · `{{rainMillimetres}}` mm so far · {{rainSparkline}} ·
+<sub>1 Jan → {{rainEndDate}}, a rainy day is ≥ 1 mm</sub>
+
+Bio says "rain addict". The data agrees.
+
+### 🔗 Elsewhere
+
+[Photographs](https://thibault.theologien.fr) ·
+[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) · [Aïstos](https://aistos.fr)
 
 <!-- block:footer -->
 
