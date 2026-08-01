@@ -9,33 +9,55 @@ export type Cell = {
   lines: Run[][];
   chart?: { values: number[]; tone: "activity" | "rain" };
   kicker?: string;
-  caption: string;
+  accent: Accent;
+  /* Set on the odd cell out so it takes the whole row instead of leaving a hole
+     beside it. */
+  span?: boolean;
 };
+
+export type Accent = "green" | "purple" | "amber" | "pink" | "blue";
 
 export type Theme = "light" | "dark";
 
-/* Figures are deliberately NOT the link blue — on a page whose only other accent
+/* GitHub's own canvas and border tokens, so the panels read as part of the page
+   rather than as a graphic pasted onto it.
+
+   Figures are deliberately NOT the link blue: on a page whose only other accent
    is a hyperlink, a blue number reads as clickable. Emphasis comes from weight
-   and from dimming everything around them instead. Green and red are reserved
-   for added and removed lines, where the colour carries the meaning. */
+   and from dimming what surrounds them. Green and red are kept for added and
+   removed lines, where the colour carries the meaning. */
 const PALETTE = {
   light: {
+    panel: "#f6f8fa",
+    border: "#d1d9e0",
     figure: "#1f2328",
-    label: "#656d76",
+    label: "#59636e",
     dim: "#818b98",
     up: "#1a7f37",
     down: "#cf222e",
     activity: "#40c463",
     rain: "#54aeff",
+    green: "#2da44e",
+    purple: "#8250df",
+    amber: "#bf8700",
+    pink: "#bf3989",
+    blue: "#0969da",
   },
   dark: {
+    panel: "#151b23",
+    border: "#3d444d",
     figure: "#f0f6fc",
-    label: "#b1bac4",
-    dim: "#8d96a0",
+    label: "#b7bfc7",
+    dim: "#9198a1",
     up: "#3fb950",
     down: "#f85149",
     activity: "#3fb950",
     rain: "#58a6ff",
+    green: "#3fb950",
+    purple: "#a371f7",
+    amber: "#d29922",
+    pink: "#db61a2",
+    blue: "#58a6ff",
   },
 } as const;
 
@@ -47,17 +69,19 @@ const SANS =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
 const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
 
-const PAD_Y = 4;
-const GUTTER = 36;
-const TITLE_SIZE = 15;
+const PANEL_RADIUS = 10;
+const PANEL_PADDING = 18;
+const GUTTER = 16;
+const ROW_GAP = 16;
+const TITLE_SIZE = 14.5;
 const LINE_SIZE = 13;
-const CAPTION_SIZE = 10.5;
 const LINE_STEP = 21;
-const TITLE_GAP = 27;
-const CHART_HEIGHT = 34;
+const TITLE_GAP = 26;
+/* Kept short on purpose: at 34 the bars dwarfed the three lines of text above
+   them, which is what made the right-hand column look unbalanced. */
+const CHART_HEIGHT = 22;
 const CHART_GAP = 12;
 const KICKER_GAP = 20;
-const CAPTION_GAP = 16;
 
 const escape = (value: string) =>
   value
@@ -90,13 +114,10 @@ type ChartProps = {
   theme: Theme;
 };
 
-/* Drawn as real bars rather than unicode blocks: inside an SVG there is no
-   reason to approximate a chart with text, and the block glyphs rendered at
-   whatever size the font chose. */
 const renderChart = ({ chart, x, y, width, theme }: ChartProps) => {
   const colours = PALETTE[theme];
-  const buckets = Math.min(chart.values.length, 52);
-  const size = Math.ceil(chart.values.length / buckets);
+  const buckets = Math.min(chart.values.length, Math.floor(width / 6));
+  const size = Math.ceil(chart.values.length / Math.max(buckets, 1));
   const totals: number[] = [];
   for (let index = 0; index < chart.values.length; index += size) {
     totals.push(
@@ -105,7 +126,7 @@ const renderChart = ({ chart, x, y, width, theme }: ChartProps) => {
   }
   const peak = Math.max(...totals, 1);
   const step = width / totals.length;
-  const barWidth = Math.max(1.5, step - 1.5);
+  const barWidth = Math.max(1.5, step - 2);
 
   return totals
     .map((total, index) => {
@@ -120,8 +141,7 @@ const contentHeight = (cell: Cell) =>
   cell.lines.length * LINE_STEP +
   (cell.chart === undefined ? 0 : CHART_HEIGHT + CHART_GAP * 2) +
   (cell.kicker === undefined ? 0 : KICKER_GAP) +
-  CAPTION_GAP +
-  CAPTION_SIZE;
+  PANEL_PADDING;
 
 type CellProps = {
   cell: Cell;
@@ -134,39 +154,53 @@ type CellProps = {
 
 const renderCell = ({ cell, x, y, width, height, theme }: CellProps) => {
   const colours = PALETTE[theme];
+  const inner = x + PANEL_PADDING;
+  const innerWidth = width - PANEL_PADDING * 2;
   const parts: string[] = [];
 
+  /* The half-pixel offset keeps the 1px stroke on the pixel grid instead of
+     straddling it, which is what makes a hairline border look grey and blurry. */
   parts.push(
-    `<text x="${x}" y="${y + 12}" font-family="${SANS}" font-size="${TITLE_SIZE}" font-weight="600" fill="${colours.figure}">${escape(`${cell.emoji}  ${cell.title}`)}</text>`,
+    `<rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${PANEL_RADIUS}" fill="${colours.panel}" stroke="${colours.border}"/>`,
+  );
+  /* A wash rather than a fill: enough to give each panel its own temperature at
+     a glance, far too faint to compete with the figures. */
+  parts.push(
+    `<rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${PANEL_RADIUS}" fill="url(#wash-${cell.accent})"/>`,
   );
 
-  let cursor = y + TITLE_GAP + 12;
+  parts.push(
+    `<text x="${inner}" y="${y + PANEL_PADDING + 12}" font-family="${SANS}" font-size="${TITLE_SIZE}" font-weight="600" fill="${colours.figure}">${escape(`${cell.emoji}  ${cell.title}`)}</text>`,
+  );
+
+  let cursor = y + PANEL_PADDING + TITLE_GAP + 12;
   for (const line of cell.lines) {
     parts.push(
-      `<text x="${x}" y="${cursor}" font-family="${SANS}" font-size="${LINE_SIZE}" fill="${colours.label}">${line.map((run) => tspan({ run, theme })).join("")}</text>`,
+      `<text x="${inner}" y="${cursor}" font-family="${SANS}" font-size="${LINE_SIZE}" fill="${colours.label}">${line.map((run) => tspan({ run, theme })).join("")}</text>`,
     );
     cursor += LINE_STEP;
   }
 
   if (cell.chart !== undefined) {
     const top = cursor - LINE_SIZE + CHART_GAP;
-    parts.push(renderChart({ chart: cell.chart, x, y: top, width, theme }));
-    /* Advance past the bars AND back down to a baseline, or the kicker draws
-       straight through the chart. */
+    parts.push(
+      renderChart({
+        chart: cell.chart,
+        x: inner,
+        y: top,
+        width: innerWidth,
+        theme,
+      }),
+    );
     cursor = top + CHART_HEIGHT + CHART_GAP + LINE_SIZE;
   }
 
   if (cell.kicker !== undefined) {
     parts.push(
-      `<text x="${x}" y="${cursor + 4}" font-family="${SANS}" font-size="${LINE_SIZE - 0.5}" font-style="italic" fill="${colours.dim}">${escape(cell.kicker)}</text>`,
+      `<text x="${inner}" y="${cursor + 4}" font-family="${SANS}" font-size="${LINE_SIZE - 0.5}" font-style="italic" fill="${colours.dim}">${escape(cell.kicker)}</text>`,
     );
   }
 
-  /* Pinned to the bottom of the row rather than trailing the content, so the
-     window labels line up across cells instead of floating at five heights. */
-  parts.push(
-    `<text x="${x}" y="${y + height}" font-family="${SANS}" font-size="${CAPTION_SIZE}" fill="${colours.dim}">${escape(cell.caption)}</text>`,
-  );
   return parts.join("\n  ");
 };
 
@@ -178,32 +212,51 @@ type GridProps = {
 };
 
 export const gridSvg = ({ cells, columns, width, theme }: GridProps) => {
-  /* No outer horizontal padding: the card's first column starts flush with the
-     surrounding markdown text and the last ends flush with the column edge, so
-     the page reads as one grid rather than an inset box. */
+  const colours = PALETTE[theme];
   const columnWidth = (width - GUTTER * (columns - 1)) / columns;
-  const cellHeight = Math.max(...cells.map(contentHeight));
+  const cellHeight = Math.max(...cells.map(contentHeight)) + PANEL_PADDING * 2;
 
   const body: string[] = [];
-  let y = PAD_Y;
-  for (let index = 0; index < cells.length; index += columns) {
-    cells.slice(index, index + columns).forEach((cell, columnIndex) => {
-      body.push(
-        renderCell({
-          cell,
-          x: columnIndex * (columnWidth + GUTTER),
-          y,
-          width: columnWidth,
-          height: cellHeight,
-          theme,
-        }),
-      );
-    });
-    y += cellHeight + 30;
+  let y = 0;
+  let column = 0;
+  for (const cell of cells) {
+    const spans = cell.span === true && columns > 1;
+    if (spans && column !== 0) {
+      column = 0;
+      y += cellHeight + ROW_GAP;
+    }
+    body.push(
+      renderCell({
+        cell,
+        x: spans ? 0 : column * (columnWidth + GUTTER),
+        y,
+        width: spans ? width : columnWidth,
+        height: cellHeight,
+        theme,
+      }),
+    );
+    column += spans ? columns : 1;
+    if (column >= columns) {
+      column = 0;
+      y += cellHeight + ROW_GAP;
+    }
   }
 
-  const height = Math.round(y - 30 + PAD_Y);
+  const height = Math.round(column === 0 ? y - ROW_GAP : y + cellHeight);
+  const washes = (["green", "purple", "amber", "pink", "blue"] as const)
+    .map(
+      (accent) =>
+        `<linearGradient id="wash-${accent}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${colours[accent]}" stop-opacity="0.10"/>
+      <stop offset="60%" stop-color="${colours[accent]}" stop-opacity="0"/>
+    </linearGradient>`,
+    )
+    .join("\n    ");
+
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img">
+  <defs>
+    ${washes}
+  </defs>
   ${body.join("\n  ")}
 </svg>
 `;

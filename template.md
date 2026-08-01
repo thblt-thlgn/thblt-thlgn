@@ -38,6 +38,8 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 
 <!-- block:grid -->
 
+<br>
+
 <picture>
   <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v={{assetVersion}}">
   <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v={{assetVersion}}">
@@ -45,11 +47,20 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
   <img alt="{{gridAlt}}" src="assets/grid-wide-light.svg?v={{assetVersion}}" width="840">
 </picture>
 
+<br>
+
+<!-- Every window the grid uses, in one place rather than repeated in each cell. -->
+<sub>Activity is a rolling 365 days · films as of {{filmsAsOf}} · rainfall 1 Jan → {{rainEndDate}}
+· rebuilt nightly, last on {{renderedOn}}</sub>
+
 <!-- block:footer -->
 
-[Photographs](https://thibault.theologien.fr) ·
-[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) · [Aïstos](https://aistos.fr)
+<br>
 
 **We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
+
+[Photographs](https://thibault.theologien.fr) ·
+[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
+[Aïstos](https://aistos.fr)
