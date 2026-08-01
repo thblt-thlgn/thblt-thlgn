@@ -1,51 +1,51 @@
 {
-  "generatedAt": "2026-08-01T05:54:37.042Z",
+  "generatedAt": "2026-08-01T10:29:36.554Z",
   "window": {
-    "from": "2025-08-01T05:54:37.042Z",
-    "to": "2026-08-01T05:54:37.042Z",
+    "from": "2025-08-01T10:29:36.554Z",
+    "to": "2026-08-01T10:29:36.554Z",
     "days": 365
   },
   "commits": {
-    "total": 8676,
-    "coAuthored": 2852,
-    "share": 32.9
+    "total": 4416,
+    "coAuthored": 1886,
+    "share": 42.7
   },
   "lines": {
-    "added": 422270,
-    "removed": 186763
+    "added": 298823,
+    "removed": 140544
   },
   "models": [
     {
       "name": "Opus 4.8",
-      "commits": 1223
+      "commits": 991
     },
     {
       "name": "Opus 4.6",
-      "commits": 790
-    },
-    {
-      "name": "Opus 4.7",
-      "commits": 259
-    },
-    {
-      "name": "Opus 5",
-      "commits": 176
+      "commits": 267
     },
     {
       "name": "Fable 5",
-      "commits": 157
+      "commits": 154
+    },
+    {
+      "name": "Opus 4.7",
+      "commits": 137
+    },
+    {
+      "name": "Opus 5",
+      "commits": 111
     },
     {
       "name": "Opus 4.5",
       "commits": 91
     },
     {
-      "name": "Sonnet 4.6",
-      "commits": 27
-    },
-    {
       "name": "Sonnet 4.5",
       "commits": 20
+    },
+    {
+      "name": "Sonnet 4.6",
+      "commits": 6
     },
     {
       "name": "Haiku 4.5",
