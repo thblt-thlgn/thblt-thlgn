@@ -235,6 +235,9 @@ const main = async () => {
     contributionsPrivate: need("contributionsPrivate"),
     /* Busts GitHub image caching, which keys on the URL: the file changes
        nightly but assets/grid-wide-light.svg does not. */
+    filmsAsOf: need("filmsAsOf"),
+    rainEndDate: need("rainEndDate"),
+    renderedOn: format(today, "d MMMM yyyy"),
     assetVersion: format(today, "yyyyMMdd"),
     /* The grid is an image, so this alt text is the only form these numbers take
        for a screen reader or a search engine. */

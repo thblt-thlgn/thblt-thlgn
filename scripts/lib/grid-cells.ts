@@ -58,9 +58,9 @@ export const cellsFor = ({
           figure(`${language(1).share}%`),
         ],
       ],
+      accent: "green",
       chart: { values: activity, tone: "activity" },
       kicker: "Almost all of it private.",
-      caption: "rolling 365 days",
     },
     {
       emoji: "🤖",
@@ -80,8 +80,8 @@ export const cellsFor = ({
           label(" lines"),
         ],
       ],
+      accent: "purple",
       kicker: "I review all of it. Allegedly.",
-      caption: "rolling 365 days",
     },
     {
       emoji: "🎬",
@@ -103,8 +103,8 @@ export const cellsFor = ({
           label(` of ${need("filmsSample")}`),
         ],
       ],
+      accent: "amber",
       kicker: "Indistinguishable from everyone else.",
-      caption: `as of ${need("filmsAsOf")}`,
     },
     {
       emoji: "💿",
@@ -121,13 +121,13 @@ export const cellsFor = ({
         [plain(need("vinylArtists"))],
         [label("at "), figure(need("vinylArtistCount")), label(" records each")],
       ],
+      accent: "pink",
       /* Data-driven: an empty gap list means the collection filled in, and the
          line would otherwise keep claiming a hole that closed. */
       kicker:
         gapDecades === ""
           ? "Every decade covered, without a gap."
           : `Nothing at all from the ${gapDecades}.`,
-      caption: "collection as it stands",
     },
     {
       emoji: "🌦",
@@ -136,9 +136,12 @@ export const cellsFor = ({
         [figure(need("rainyDays")), label(" rainy days this year")],
         [figure(need("rainMillimetres")), label(" mm so far")],
       ],
+      accent: "blue",
       chart: { values: rain, tone: "rain" },
+      /* Odd cell out: spans the row so the grid has no empty slot, and the wide
+         panel is where the year of rainfall actually has room to read. */
+      span: true,
       kicker: '"Rain addict", says the bio. The data agrees.',
-      caption: `1 Jan → ${need("rainEndDate")} · a rainy day is ≥ 1 mm`,
     },
   ];
 };

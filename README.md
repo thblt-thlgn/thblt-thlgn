@@ -6,6 +6,8 @@ Of the `4,644` contributions on this profile in the past year,
 `4,624` are anonymous green squares. You'll have to take my word for it —
 *ou me croire sur parole.*
 
+<br>
+
 <picture>
   <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v=20260801">
   <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v=20260801">
@@ -13,9 +15,17 @@ Of the `4,644` contributions on this profile in the past year,
   <img alt="4,644 contributions across 14 repositories, almost all private. 1,886 of my 4,416 commits were co-authored with Claude (43%). 1,103 films rated, 86 records, 74 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20260801" width="840">
 </picture>
 
-[Photographs](https://thibault.theologien.fr) ·
-[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) · [Aïstos](https://aistos.fr)
+<br>
+
+<sub>Activity is a rolling 365 days · films as of July 2026 · rainfall 1 Jan → 29 July 2026
+· rebuilt nightly, last on 1 August 2026</sub>
+
+<br>
 
 **We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
+
+[Photographs](https://thibault.theologien.fr) ·
+[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
+[Aïstos](https://aistos.fr)
