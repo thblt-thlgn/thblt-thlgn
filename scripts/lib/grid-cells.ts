@@ -1,10 +1,10 @@
-import { type Cell, type Run } from "./grid-svg";
+import type { Cell, ChartPoint, Run } from "./grid-svg";
 
 type CellsProps = {
   values: Record<string, string>;
   languages: { name: string; share: number }[];
-  activity: number[];
-  rain: number[];
+  activity: ChartPoint[];
+  rain: ChartPoint[];
 };
 
 const figure = (text: string): Run => ({ text, kind: "figure" });
@@ -59,8 +59,9 @@ export const cellsFor = ({
         ],
       ],
       accent: "green",
-      chart: { values: activity, tone: "activity" },
+      chart: { points: activity, tone: "activity" },
       kicker: "Almost all of it private.",
+      caption: "rolling 365 days",
     },
     {
       emoji: "🤖",
@@ -82,6 +83,7 @@ export const cellsFor = ({
       ],
       accent: "purple",
       kicker: "I review all of it. Allegedly.",
+      caption: "rolling 365 days",
     },
     {
       emoji: "🎬",
@@ -105,6 +107,7 @@ export const cellsFor = ({
       ],
       accent: "amber",
       kicker: "Indistinguishable from everyone else.",
+      caption: `as of ${need("filmsAsOf")}`,
     },
     {
       emoji: "💿",
@@ -128,6 +131,7 @@ export const cellsFor = ({
         gapDecades === ""
           ? "Every decade covered, without a gap."
           : `Nothing at all from the ${gapDecades}.`,
+      caption: "collection as it stands",
     },
     {
       emoji: "🌦",
@@ -137,11 +141,12 @@ export const cellsFor = ({
         [figure(need("rainMillimetres")), label(" mm so far")],
       ],
       accent: "blue",
-      chart: { values: rain, tone: "rain" },
+      chart: { points: rain, tone: "rain" },
       /* Odd cell out: spans the row so the grid has no empty slot, and the wide
          panel is where the year of rainfall actually has room to read. */
       span: true,
       kicker: '"Rain addict", says the bio. The data agrees.',
+      caption: `1 Jan → ${need("rainEndDate")} · a rainy day is ≥ 1 mm`,
     },
   ];
 };

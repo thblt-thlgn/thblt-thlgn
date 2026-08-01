@@ -7,13 +7,18 @@ export type Cell = {
   emoji: string;
   title: string;
   lines: Run[][];
-  chart?: { values: number[]; tone: "activity" | "rain" };
+  chart?: { points: ChartPoint[]; tone: "activity" | "rain" };
+  caption: string;
   kicker?: string;
   accent: Accent;
   /* Set on the odd cell out so it takes the whole row instead of leaving a hole
      beside it. */
   span?: boolean;
 };
+
+/* month is set only on the first day of a month, so the renderer can place a
+   tick without knowing anything about dates. */
+export type ChartPoint = { value: number; month?: string };
 
 export type Accent = "green" | "purple" | "amber" | "pink" | "blue";
 
@@ -73,7 +78,10 @@ const PANEL_RADIUS = 10;
 const PANEL_PADDING = 18;
 const GUTTER = 16;
 const ROW_GAP = 16;
-const TITLE_SIZE = 14.5;
+const TITLE_SIZE = 16.5;
+const CAPTION_SIZE = 10.5;
+const AXIS_SIZE = 9;
+const AXIS_GAP = 13;
 const LINE_SIZE = 13;
 const LINE_STEP = 21;
 const TITLE_GAP = 26;
@@ -116,31 +124,54 @@ type ChartProps = {
 
 const renderChart = ({ chart, x, y, width, theme }: ChartProps) => {
   const colours = PALETTE[theme];
-  const buckets = Math.min(chart.values.length, Math.floor(width / 6));
-  const size = Math.ceil(chart.values.length / Math.max(buckets, 1));
-  const totals: number[] = [];
-  for (let index = 0; index < chart.values.length; index += size) {
-    totals.push(
-      chart.values.slice(index, index + size).reduce((sum, v) => sum + v, 0),
-    );
+  const buckets = Math.max(1, Math.floor(width / 6));
+  const size = Math.ceil(chart.points.length / buckets);
+
+  const bars: { value: number; month?: string }[] = [];
+  for (let index = 0; index < chart.points.length; index += size) {
+    const slice = chart.points.slice(index, index + size);
+    bars.push({
+      value: slice.reduce((sum, point) => sum + point.value, 0),
+      /* A bucket spans several days, so it is labelled if ANY of them opened a
+         month — otherwise a month boundary falling mid-bucket loses its tick. */
+      month: slice.find((point) => point.month !== undefined)?.month,
+    });
   }
-  const peak = Math.max(...totals, 1);
-  const step = width / totals.length;
+
+  const peak = Math.max(...bars.map((bar) => bar.value), 1);
+  const step = width / bars.length;
   const barWidth = Math.max(1.5, step - 2);
 
-  return totals
-    .map((total, index) => {
-      const height = Math.max(1.5, (total / peak) * CHART_HEIGHT);
+  const rects = bars
+    .map((bar, index) => {
+      const height = Math.max(1.5, (bar.value / peak) * CHART_HEIGHT);
       return `<rect x="${(x + index * step).toFixed(1)}" y="${(y + CHART_HEIGHT - height).toFixed(1)}" width="${barWidth.toFixed(1)}" height="${height.toFixed(1)}" fill="${colours[chart.tone]}" rx="1"/>`;
     })
     .join("");
+
+  /* Ticks are dropped rather than crammed when they would collide, so a narrow
+     card shows every other month instead of an unreadable smear. */
+  const minimumGap = 30;
+  let lastLabel = Number.NEGATIVE_INFINITY;
+  const labels = bars
+    .map((bar, index) => {
+      if (bar.month === undefined) return "";
+      const at = x + index * step;
+      if (at - lastLabel < minimumGap || at + minimumGap > x + width) return "";
+      lastLabel = at;
+      return `<text x="${at.toFixed(1)}" y="${(y + CHART_HEIGHT + AXIS_GAP).toFixed(1)}" font-family="${SANS}" font-size="${AXIS_SIZE}" fill="${colours.dim}">${bar.month}</text>`;
+    })
+    .join("");
+
+  return rects + labels;
 };
 
 const contentHeight = (cell: Cell) =>
   TITLE_GAP +
   cell.lines.length * LINE_STEP +
-  (cell.chart === undefined ? 0 : CHART_HEIGHT + CHART_GAP * 2) +
+  (cell.chart === undefined ? 0 : CHART_HEIGHT + CHART_GAP * 2 + AXIS_GAP) +
   (cell.kicker === undefined ? 0 : KICKER_GAP) +
+  CAPTION_SIZE +
   PANEL_PADDING;
 
 type CellProps = {
@@ -192,7 +223,7 @@ const renderCell = ({ cell, x, y, width, height, theme }: CellProps) => {
         theme,
       }),
     );
-    cursor = top + CHART_HEIGHT + CHART_GAP + LINE_SIZE;
+    cursor = top + CHART_HEIGHT + AXIS_GAP + CHART_GAP + LINE_SIZE;
   }
 
   if (cell.kicker !== undefined) {
@@ -201,6 +232,11 @@ const renderCell = ({ cell, x, y, width, height, theme }: CellProps) => {
     );
   }
 
+  /* Pinned to the panel floor rather than trailing the content, so the window
+     labels line up across cells instead of floating at five heights. */
+  parts.push(
+    `<text x="${inner}" y="${y + height - PANEL_PADDING}" font-family="${SANS}" font-size="${CAPTION_SIZE}" fill="${colours.dim}">${escape(cell.caption)}</text>`,
+  );
   return parts.join("\n  ");
 };
 
