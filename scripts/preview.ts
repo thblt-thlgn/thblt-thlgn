@@ -1,6 +1,7 @@
 import { mkdir, rm } from "node:fs/promises";
 import { type Browser, chromium } from "playwright-core";
 import { z } from "zod";
+import { PANEL_PADDING } from "./lib/grid-svg";
 
 /* The audit runs in the page and comes back as unknown, so it is validated like
    any other data crossing a boundary rather than asserted into shape. */
@@ -206,7 +207,10 @@ const checkLinks = async (links: string[]) => {
    fits here can overrun on another machine. Opening each SVG as a document and
    measuring getBBox is the only way to see it — inside an <img> the internals
    are unreachable. */
-const SVG_EDGE_PADDING = 20;
+/* The card's own padding, imported rather than duplicated — a second copy of
+   this number silently turned a correctly-placed right-aligned caption into a
+   reported overflow. */
+const SVG_EDGE_PADDING = PANEL_PADDING;
 
 const checkSvgOverflow = async (browser: Browser) => {
   const failures: Failure[] = [];
