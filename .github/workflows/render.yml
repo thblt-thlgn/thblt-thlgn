@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "30 3 * * *"
   push:
+    # main only. Without this the job also fired on feature branches and
+    # committed a README rebuild onto each one, which then collided with the
+    # branch's own history on the next push.
+    branches: [main]
     paths:
       - "data/**"
       - "template.md"
