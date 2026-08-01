@@ -1,5 +1,5 @@
 import { mkdir, rm } from "node:fs/promises";
-import { chromium } from "playwright-core";
+import { type Browser, chromium } from "playwright-core";
 import { z } from "zod";
 
 /* The audit runs in the page and comes back as unknown, so it is validated like
@@ -71,8 +71,16 @@ const toGitHubHtml = async (markdown: string) => {
       `preview: /markdown → ${response.status} ${await response.text()}`,
     );
   }
-  return response.text();
+  return unwrapLinkedImages(await response.text());
 };
+
+/* The standalone /markdown endpoint linkifies images — <a target="_blank"><img>.
+   Rendering a README on github.com does not: verified against a live page, where
+   the img is a direct child of <picture>. The difference matters because <picture>
+   only governs a DIRECT child img, so the API anchor silently disables source
+   selection and made this harness report the narrow card was never chosen. */
+const unwrapLinkedImages = (html: string) =>
+  html.replace(/<a\b[^>]*>\s*(<img\b[^>]*>)\s*<\/a>/g, "$1");
 
 type PageProps = {
   html: string;
@@ -95,6 +103,32 @@ const pageFor = ({ html, theme, width }: PageProps) => `<!doctype html>
 </head>
 <body><div class="column"><article class="markdown-body">${html}</article></div></body>
 </html>`;
+
+/* One page holding all four renders as live iframes, so a single open shows
+   desktop and phone in both themes without hunting through PNGs. They are the
+   real HTML, so text can be selected and the DOM inspected. */
+const indexPage = () => `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>profile preview</title>
+<style>
+  body { margin: 0; font: 13px ui-sans-serif, system-ui, sans-serif;
+         background: #1c2128; color: #adbac7; }
+  h1 { font-size: 13px; font-weight: 600; padding: 12px 16px; margin: 0; }
+  .row { display: flex; gap: 16px; padding: 0 16px 16px; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { padding: 6px 0; opacity: .7; }
+  iframe { border: 1px solid #444c56; border-radius: 6px; background: #fff; }
+  iframe.dark { background: #0d1117; }
+</style></head><body>
+<h1>profile preview — rendered by GitHub's /markdown, measured in Chrome</h1>
+<div class="row">
+${VIEWS.flatMap((view) =>
+  THEMES.map(
+    (theme) =>
+      `  <figure><figcaption>${view.name} · ${theme} · ${view.width}px</figcaption>
+    <iframe class="${theme}" src="${view.name}-${theme}.html" width="${view.width + 48}" height="900"></iframe></figure>`,
+  ),
+).join("\n")}
+</div></body></html>`;
 
 const AUDIT = `(() => {
   const article = document.querySelector('article.markdown-body');
@@ -137,7 +171,7 @@ const AUDIT = `(() => {
     statFills: statParagraphs.map(lineFill),
     links: [...article.querySelectorAll('a')].map((a) => a.getAttribute('href')),
     images: [...article.querySelectorAll('img')].map((i) => ({
-      src: i.getAttribute('src'),
+      src: (i.currentSrc || i.src).split('/').pop(),
       natural: i.naturalWidth,
       rendered: Math.round(i.getBoundingClientRect().width),
     })),
@@ -165,6 +199,39 @@ const checkLinks = async (links: string[]) => {
       );
     }
   }
+  return failures;
+};
+
+/* The card text is laid out by the viewer's font, not by us, so a string that
+   fits here can overrun on another machine. Opening each SVG as a document and
+   measuring getBBox is the only way to see it — inside an <img> the internals
+   are unreachable. */
+const SVG_EDGE_PADDING = 20;
+
+const checkSvgOverflow = async (browser: Browser) => {
+  const failures: Failure[] = [];
+  const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
+  for (const variant of ["wide-light", "wide-dark", "narrow-light", "narrow-dark"]) {
+    const file = `${ROOT}assets/grid-${variant}.svg`;
+    if (!(await Bun.file(file).exists())) continue;
+    await page.goto(`file://${file}`);
+    const overruns = z.array(z.string()).parse(
+      await page.evaluate(`(() => {
+        const svg = document.documentElement;
+        const limit = svg.viewBox.baseVal.width - ${SVG_EDGE_PADDING};
+        return [...svg.querySelectorAll("text")]
+          .filter((t) => { const b = t.getBBox(); return b.x + b.width > limit; })
+          .map((t) => t.textContent.trim().slice(0, 46));
+      })()`),
+    );
+    for (const text of overruns) {
+      failures.push({
+        check: `svg ${variant} overflow`,
+        detail: `"${text}" runs past the card edge`,
+      });
+    }
+  }
+  await page.close();
   return failures;
 };
 
@@ -200,6 +267,11 @@ const main = async () => {
         deviceScaleFactor: 2,
       });
       await page.goto(`file://${file}`);
+      /* <picture> resolves its source from the viewport, and naturalWidth is
+         only meaningful once that source has decoded. */
+      await page.waitForFunction(
+        "[...document.images].every((i) => i.complete && i.naturalWidth > 0)",
+      );
       const audit = zAudit.parse(await page.evaluate(AUDIT));
       await page.screenshot({ path: `${OUT}${label}.png`, fullPage: true });
       await page.close();
@@ -246,11 +318,16 @@ const main = async () => {
       );
     }
   }
-  await browser.close();
 
+  failures.push(...(await checkSvgOverflow(browser)));
+  await browser.close();
   if (shouldCheckLinks) failures.push(...(await checkLinks(collectedLinks)));
 
-  console.log(`\n  screenshots → preview/`);
+  await Bun.write(`${OUT}index.html`, indexPage());
+  console.log(`\n  open ${OUT}index.html   (all four views side by side)`);
+  if (process.argv.includes("--open")) {
+    await Bun.$`open ${OUT}index.html`.quiet().nothrow();
+  }
   if (failures.length === 0) {
     console.log("  ✅ all checks passed");
     return;

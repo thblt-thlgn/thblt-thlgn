@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { z } from "zod";
 import { fetchRain, fetchVinyl } from "./lib/sources";
+import { type Cell, gridSvg, type Run } from "./lib/grid-svg";
 import { sparkline } from "./lib/sparkline";
 import { renderTemplate } from "./lib/template";
 
@@ -119,7 +120,7 @@ const modelLine = (
 
 /* A wide tie would produce a cell line long enough to force the two-column table
    to scroll on a phone, so the list is capped and the remainder counted. */
-const ARTIST_LIMIT = 3;
+const ARTIST_LIMIT = 2;
 
 const artistList = (artists: string[]) => {
   const shown = artists.slice(0, ARTIST_LIMIT).join(" · ");
@@ -131,6 +132,177 @@ const decadeList = (decades: number[]) => {
   const labels = decades.map((decade) => `\`${decade}\`s`);
   if (labels.length <= 1) return labels.join("");
   return `${labels.slice(0, -1).join(", ")} or the ${labels[labels.length - 1]}`;
+};
+
+/* Two widths, because an <img> is scaled by GitHub's max-width:100% rather than
+   reflowed — a wide card shown in a phone column shrinks its text instead of
+   rewrapping. 840 sits just inside the measured 846px desktop column and 343 is
+   the phone column exactly, so neither variant is ever resampled. */
+const WIDE = 840;
+const NARROW = 343;
+
+type GridProps = {
+  values: Record<string, string>;
+  shipping: z.infer<typeof zShipping>;
+  claude: z.infer<typeof zClaude>;
+};
+
+const cellsFor = ({ values, shipping, claude }: GridProps): Cell[] => {
+  /* The markdown template proves every token it renders was computed; the grid
+     needs the same guarantee, so a missing value throws rather than drawing an
+     empty string into the card. */
+  const need = (key: string) => {
+    const value = values[key];
+    if (value === undefined) throw new Error(`grid: no value for ${key}`);
+    return value;
+  };
+  const figure = (text: string): Run => ({ text, kind: "figure" });
+  const text = (value: string): Run => ({ text: value, kind: "text" });
+  const language = (index: number) => {
+    const entry = shipping.languages[index];
+    if (entry === undefined) throw new Error("grid: missing language");
+    return entry;
+  };
+  const model = (index: number) => {
+    const entry = claude.models[index];
+    if (entry === undefined) throw new Error("grid: missing model");
+    return entry;
+  };
+
+  return [
+    {
+      emoji: "📦",
+      title: "What I ship",
+      lines: [
+        [
+          figure(need("contributionsTotal")),
+          text(" contributions across "),
+          figure(need("repositoryCount")),
+          text(` ${need("repositoryNoun")}`),
+        ],
+        [
+          figure(need("activeDays")),
+          text(" of "),
+          figure(need("calendarDays")),
+          text(" days had at least one"),
+        ],
+        [
+          text(`${language(0).name} `),
+          figure(`${language(0).share}%`),
+          text(`  ·  ${language(1).name} `),
+          figure(`${language(1).share}%`),
+        ],
+        [figure(need("shippingSparkline"))],
+      ],
+      kicker: "Almost all of it private.",
+      caption: "rolling 365 days",
+    },
+    {
+      emoji: "🤖",
+      title: "What Claude ships",
+      lines: [
+        [
+          figure(need("claudeCoAuthored")),
+          text(" of "),
+          figure(need("claudeCommits")),
+          text(" of my commits — "),
+          figure(need("claudeShare")),
+        ],
+        [
+          figure(`+${need("linesAdded")}`),
+          text("  /  "),
+          figure(`−${need("linesRemoved")}`),
+          text(" lines"),
+        ],
+        [
+          text(`${model(0).name} `),
+          figure(number(model(0).commits)),
+          text(`  ·  ${model(1).name} `),
+          figure(number(model(1).commits)),
+        ],
+        [text(`${model(2).name} `), figure(number(model(2).commits))],
+      ],
+      kicker: "I review all of it. Allegedly.",
+      caption: "rolling 365 days",
+    },
+    {
+      emoji: "🧱",
+      title: "The platform",
+      lines: [
+        [figure(need("models")), text(" data models")],
+        [figure(need("migrations")), text(" migrations")],
+        [figure(need("gritRules")), text(" custom lint rules")],
+      ],
+      kicker: "They stop AI agents repeating a mistake.",
+      caption: "snapshot, today",
+    },
+    {
+      emoji: "🎬",
+      title: "What I watch",
+      lines: [
+        [figure(need("filmsRated")), text(" films rated")],
+        [figure(need("filmsWatchlist")), text(" on the watchlist")],
+        [
+          figure(need("filmsAverage")),
+          text(" average — "),
+          figure(need("filmsDelta")),
+          text(" under IMDb"),
+        ],
+        [
+          text("only "),
+          figure(need("filmsTens")),
+          text(" scored "),
+          figure("10"),
+          text(` of ${need("filmsSample")}`),
+        ],
+      ],
+      kicker: "Indistinguishable from everyone else.",
+      caption: `as of ${need("filmsAsOf")}`,
+    },
+    {
+      emoji: "💿",
+      title: "What I spin",
+      lines: [
+        [
+          figure(need("vinylRecords")),
+          text(" records, "),
+          figure(need("vinylShare")),
+          text(" vinyl"),
+        ],
+        [text(`${need("genreOne")} · ${need("genreTwo")}`.replace(/`/g, ""))],
+        [text(`${need("genreThree")}`.replace(/`/g, ""))],
+        [text(need("vinylArtists").replace(/`/g, ""))],
+        [text("at "), figure(need("vinylArtistCount")), text(" each")],
+      ],
+      kicker: "Nothing at all from the 1990s.",
+      caption: "collection as it stands",
+    },
+    {
+      emoji: "🌦",
+      title: "Paris, mostly rain",
+      lines: [
+        [figure(need("rainyDays")), text(" rainy days this year")],
+        [figure(need("rainMillimetres")), text(" mm so far")],
+        [figure(need("rainSparkline"))],
+      ],
+      kicker: 'Bio says "rain addict". The data agrees.',
+      caption: `1 Jan → ${need("rainEndDate")} · a rainy day is ≥ 1 mm`,
+    },
+  ];
+};
+
+const writeGrid = async (props: GridProps) => {
+  const cells = cellsFor(props);
+  for (const theme of ["light", "dark"] as const) {
+    await Bun.write(
+      `${ROOT}assets/grid-wide-${theme}.svg`,
+      gridSvg({ cells, columns: 2, width: WIDE, theme }),
+    );
+    await Bun.write(
+      `${ROOT}assets/grid-narrow-${theme}.svg`,
+      gridSvg({ cells, columns: 1, width: NARROW, theme }),
+    );
+  }
 };
 
 const main = async () => {
@@ -241,8 +413,36 @@ const main = async () => {
     renderedOn: format(today, "d MMMM yyyy"),
   };
 
+  const need = (key: string) => {
+    const value = values[key];
+    if (value === undefined) throw new Error(`render: no value for ${key}`);
+    return value;
+  };
+
+  await writeGrid({ values, shipping, claude });
+
+  /* Only what the markdown itself renders. Every other figure now lives in the
+     SVG, and handing them all to renderTemplate would trip its own guard that a
+     computed value must be consumed — the guard is right, the values moved. */
+  const templateValues: Record<string, string> = {
+    contributionsTotal: need("contributionsTotal"),
+    contributionsPrivate: need("contributionsPrivate"),
+    renderedOn: need("renderedOn"),
+    /* Busts GitHub image caching, which keys on the URL: the file changes
+       nightly but assets/grid-wide-light.svg does not. */
+    assetVersion: format(today, "yyyyMMdd"),
+    /* The grid is an image, so this alt text is the only form these numbers take
+       for a screen reader or a search engine. */
+    gridAlt: [
+      `${need("contributionsTotal")} contributions across ${need("repositoryCount")} repositories, almost all private.`,
+      `${need("claudeCoAuthored")} of my ${need("claudeCommits")} commits were co-authored with Claude (${need("claudeShare")}).`,
+      `The platform is ${need("models")} data models, ${need("migrations")} migrations and ${need("gritRules")} custom lint rules.`,
+      `${need("filmsRated")} films rated, ${need("vinylRecords")} records, ${need("rainyDays")} rainy days in Paris this year.`,
+    ].join(" "),
+  };
+
   const template = await Bun.file(`${ROOT}template.md`).text();
-  const readme = renderTemplate({ template, values });
+  const readme = renderTemplate({ template, values: templateValues });
 
   if (dryRun) {
     process.stdout.write(readme);
