@@ -207,15 +207,27 @@ const checkLinks = async (links: string[]) => {
    fits here can overrun on another machine. Opening each SVG as a document and
    measuring getBBox is the only way to see it — inside an <img> the internals
    are unreachable. */
-/* The card's own padding, imported rather than duplicated — a second copy of
-   this number silently turned a correctly-placed right-aligned caption into a
-   reported overflow. */
+/* Imported rather than duplicated — a second copy of this number silently turned
+   a correctly-placed right-aligned caption into a reported overflow. */
 const SVG_EDGE_PADDING = PANEL_PADDING;
+
+/* Glyph ink, not slack. A right-anchored caption ends exactly at the panel edge,
+   and the final glyph can paint a fraction past its own advance — by more under
+   the runner's fonts than under macOS, which is why the check passed locally and
+   failed CI on every right-hand cell. */
+const INK_TOLERANCE = 1.5;
 
 const checkSvgOverflow = async (browser: Browser) => {
   const failures: Failure[] = [];
-  const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
-  for (const variant of ["wide-light", "wide-dark", "narrow-light", "narrow-dark"]) {
+  const page = await browser.newPage({
+    viewport: { width: 1200, height: 900 },
+  });
+  for (const variant of [
+    "wide-light",
+    "wide-dark",
+    "narrow-light",
+    "narrow-dark",
+  ]) {
     const file = `${ROOT}assets/grid-${variant}.svg`;
     if (!(await Bun.file(file).exists())) continue;
     await page.goto(`file://${file}`);
@@ -224,7 +236,7 @@ const checkSvgOverflow = async (browser: Browser) => {
         const svg = document.documentElement;
         const limit = svg.viewBox.baseVal.width - ${SVG_EDGE_PADDING};
         return [...svg.querySelectorAll("text")]
-          .filter((t) => { const b = t.getBBox(); return b.x + b.width > limit; })
+          .filter((t) => { const b = t.getBBox(); return b.x + b.width > limit + ${INK_TOLERANCE}; })
           .map((t) => t.textContent.trim().slice(0, 46));
       })()`),
     );
@@ -309,6 +321,9 @@ const main = async () => {
       /* An <img> is scaled by GitHub's max-width:100%, so a wide SVG shown in a
          narrow column shrinks its text below legibility instead of reflowing. */
       for (const image of audit.images) {
+        /* Only the card. An icon deliberately supplied at 64px and drawn at 14
+           is retina crispness, not a downscale that costs legibility. */
+        if (!(image.src ?? "").includes("grid-")) continue;
         if (image.natural > 0 && image.rendered < image.natural * 0.9) {
           failures.push({
             check: `${label} image scaling`,
