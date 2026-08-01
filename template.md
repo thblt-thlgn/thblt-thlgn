@@ -53,6 +53,3 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 **We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
-
-<sub>Rebuilt nightly by GitHub Actions from my own commit history, Discogs and Open-Meteo · as of
-{{renderedOn}}</sub>
