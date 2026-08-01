@@ -10,7 +10,7 @@ export const renderTemplate = ({ template, values }: RenderProps) => {
   const consumed = new Set<string>();
 
   /* Comments carry the authoring notes and the block markers, including literal
-     token syntax in the examples — none of it is substitutable, and none of it
+     token syntax in the examples - none of it is substitutable, and none of it
      belongs in the rendered page. */
   const copy = template.replace(/^<!--[\s\S]*?-->\n?/gm, "");
 
@@ -19,7 +19,7 @@ export const renderTemplate = ({ template, values }: RenderProps) => {
     (_match, name: string, body: string) => {
       consumed.add(name);
       const keep = (values[name] ?? "") !== "";
-      /* Tokens inside a dropped branch are still accounted for — the branch was
+      /* Tokens inside a dropped branch are still accounted for - the branch was
          not taken, which is not the same as the value going missing. */
       if (!keep) {
         for (const [, token] of body.matchAll(TOKEN)) {
@@ -51,7 +51,7 @@ export const renderTemplate = ({ template, values }: RenderProps) => {
   const unused = Object.keys(values).filter((name) => !consumed.has(name));
   if (unused.length > 0) {
     throw new Error(
-      `template: computed but never rendered — ${unused.join(", ")}`,
+      `template: computed but never rendered - ${unused.join(", ")}`,
     );
   }
 

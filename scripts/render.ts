@@ -72,7 +72,7 @@ const readData = async <T>(name: string, schema: z.ZodType<T>) => {
   const file = Bun.file(`${ROOT}data/${name}.json`);
   if (!(await file.exists())) {
     throw new Error(
-      `bootstrap: data/${name}.json is missing — run the aggregate workflow first`,
+      `bootstrap: data/${name}.json is missing - run the aggregate workflow first`,
     );
   }
   const $parsed = schema.safeParse(await file.json());
@@ -103,7 +103,7 @@ const decadeList = (decades: number[]) => {
 };
 
 /* Two widths, because an <img> is scaled by GitHub's max-width:100% rather than
-   reflowed — a wide card shown in a phone column shrinks its text instead of
+   reflowed - a wide card shown in a phone column shrinks its text instead of
    rewrapping. 840 sits just inside the measured 846px desktop column and 343 is
    the phone column exactly, so neither variant is ever resampled. */
 const WIDE = 840;
@@ -187,7 +187,7 @@ const main = async () => {
     contributionsPrivate: number(shipping.contributions.private),
     activeDays: number(shipping.contributions.activeDays),
     calendarDays: number(shipping.contributions.calendarDays),
-    /* The repositories actually committed to, not every one the App can read —
+    /* The repositories actually committed to, not every one the App can read -
        "across 53 repositories" counts dormant side projects as places I work. */
     repositoryCount: number(shipping.repositories.active),
     repositoryNoun:
@@ -246,7 +246,7 @@ const main = async () => {
 
   /* Only what the markdown itself renders. Every other figure now lives in the
      SVG, and handing them all to renderTemplate would trip its own guard that a
-     computed value must be consumed — the guard is right, the values moved. */
+     computed value must be consumed - the guard is right, the values moved. */
   const templateValues: Record<string, string> = {
     contributionsTotal: need("contributionsTotal"),
     contributionsPrivate: need("contributionsPrivate"),
