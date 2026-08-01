@@ -133,7 +133,7 @@ const renderChart = ({ chart, x, y, width, theme }: ChartProps) => {
     bars.push({
       value: slice.reduce((sum, point) => sum + point.value, 0),
       /* A bucket spans several days, so it is labelled if ANY of them opened a
-         month — otherwise a month boundary falling mid-bucket loses its tick. */
+         month - otherwise a month boundary falling mid-bucket loses its tick. */
       month: slice.find((point) => point.month !== undefined)?.month,
     });
   }

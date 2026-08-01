@@ -77,7 +77,7 @@ export const cellsFor = ({
         [
           { text: `+${need("linesAdded")}`, kind: "up" },
           label("  /  "),
-          { text: `−${need("linesRemoved")}`, kind: "down" },
+          { text: `-${need("linesRemoved")}`, kind: "down" },
           label(" lines"),
         ],
       ],
@@ -93,7 +93,7 @@ export const cellsFor = ({
         [figure(need("filmsWatchlist")), label(" on the watchlist")],
         [
           figure(need("filmsAverage")),
-          label(" average — "),
+          label(" average - "),
           figure(need("filmsDelta")),
           label(" under IMDb"),
         ],

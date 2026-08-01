@@ -6,24 +6,24 @@
     - a computed value no template token consumes also aborts, so a figure cannot go missing quietly
     - {{?token}}…{{/}} keeps that segment only when the token has a non-empty value
 
-  LAYOUT — the grid is an SVG, not a table. Three things were measured, so none needs retrying.
+  LAYOUT - the grid is an SVG, not a table. Three things were measured, so none needs retrying.
 
   1. A markdown table cannot hold the grid. At 375px the readme column is ~343px, GitHub splits
      two columns unevenly (~200/~130px), <code> padding cuts the real budget to ~18 characters,
-     and <td> defaults to vertical-align:middle — which GitHub does not override — so the shorter
+     and <td> defaults to vertical-align:middle - which GitHub does not override - so the shorter
      cell floats mid-height. Tried twice.
   2. Inline <svg> is stripped by GitHub's sanitiser. The grid must be an <img>, which means its
      text is not selectable and its links are not clickable. Every link therefore lives in the
      markdown below the image, never inside it.
   3. <source media="(max-width: …)"> DOES survive the sanitiser, so the wide and narrow cards are
-     swapped by the browser. This is the only genuinely responsive mechanism GitHub allows — an
+     swapped by the browser. This is the only genuinely responsive mechanism GitHub allows - an
      <img> is scaled by max-width:100%, so a single wide card would shrink its text on a phone
      rather than reflow. Verified against GitHub's own /markdown endpoint.
 
   Run `bun run preview --open` before pushing. It renders through that same endpoint and measures
   the result in Chrome at both widths in both themes.
 
-  Do not edit README.md — it is generated.
+  Do not edit README.md - it is generated.
 -->
 
 <!-- block:header -->
@@ -31,7 +31,7 @@
 I build debt-collection software that tries hard not to be unpleasant about it.
 
 Of the `{{contributionsTotal}}` contributions on this profile in the past year,
-`{{contributionsPrivate}}` are anonymous green squares. You'll have to take my word for it —
+`{{contributionsPrivate}}` are anonymous green squares. You'll have to take my word for it -
 *ou me croire sur parole.*
 
 <!-- block:grid -->
@@ -47,9 +47,9 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 
 <!-- block:footer -->
 
-<br>
+<br><br><br>
 
-**We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
+**We're hiring in Paris** - Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
 

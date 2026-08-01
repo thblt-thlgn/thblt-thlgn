@@ -1,7 +1,7 @@
 I build debt-collection software that tries hard not to be unpleasant about it.
 
 Of the `4,644` contributions on this profile in the past year,
-`4,624` are anonymous green squares. You'll have to take my word for it —
+`4,624` are anonymous green squares. You'll have to take my word for it -
 *ou me croire sur parole.*
 
 <br>
@@ -13,9 +13,9 @@ Of the `4,644` contributions on this profile in the past year,
   <img alt="4,644 contributions across 14 repositories, almost all private. 1,886 of my 4,416 commits were co-authored with Claude (43%). 1,103 films rated, 86 records, 74 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20260801" width="840">
 </picture>
 
-<br>
+<br><br><br>
 
-**We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
+**We're hiring in Paris** - Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
 

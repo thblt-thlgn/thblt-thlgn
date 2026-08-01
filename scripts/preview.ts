@@ -26,7 +26,7 @@ const OUT = `${ROOT}preview/`;
 
 /* Measured on the live profile page: the readme column is 846px on desktop and
    343px inside a 375px phone. Asserting against those exact widths is the whole
-   point — a layout that passes here cannot fail there. */
+   point - a layout that passes here cannot fail there. */
 const VIEWS = [
   { name: "desktop", width: 846 },
   { name: "phone", width: 343 },
@@ -49,7 +49,7 @@ const renderMarkdown = async () => {
 };
 
 /* WHY: GitHub's own endpoint, so this is the exact parse and the exact sanitizer
-   the profile page applies — not a local approximation that could disagree about
+   the profile page applies - not a local approximation that could disagree about
    which HTML survives.
 
    mode MUST be "markdown", not "gfm". "gfm" is the comment flavour: it turns
@@ -75,7 +75,7 @@ const toGitHubHtml = async (markdown: string) => {
   return unwrapLinkedImages(await response.text());
 };
 
-/* The standalone /markdown endpoint linkifies images — <a target="_blank"><img>.
+/* The standalone /markdown endpoint linkifies images - <a target="_blank"><img>.
    Rendering a README on github.com does not: verified against a live page, where
    the img is a direct child of <picture>. The difference matters because <picture>
    only governs a DIRECT child img, so the API anchor silently disables source
@@ -120,7 +120,7 @@ const indexPage = () => `<!doctype html>
   iframe { border: 1px solid #444c56; border-radius: 6px; background: #fff; }
   iframe.dark { background: #0d1117; }
 </style></head><body>
-<h1>profile preview — rendered by GitHub's /markdown, measured in Chrome</h1>
+<h1>profile preview - rendered by GitHub's /markdown, measured in Chrome</h1>
 <div class="row">
 ${VIEWS.flatMap((view) =>
   THEMES.map(
@@ -196,7 +196,7 @@ const checkLinks = async (links: string[]) => {
       }
     } catch (error) {
       console.log(
-        `  ~ ${href} unreachable from here (${error instanceof Error ? error.message : "error"}) — not counted`,
+        `  ~ ${href} unreachable from here (${error instanceof Error ? error.message : "error"}) - not counted`,
       );
     }
   }
@@ -205,14 +205,14 @@ const checkLinks = async (links: string[]) => {
 
 /* The card text is laid out by the viewer's font, not by us, so a string that
    fits here can overrun on another machine. Opening each SVG as a document and
-   measuring getBBox is the only way to see it — inside an <img> the internals
+   measuring getBBox is the only way to see it - inside an <img> the internals
    are unreachable. */
-/* Imported rather than duplicated — a second copy of this number silently turned
+/* Imported rather than duplicated - a second copy of this number silently turned
    a correctly-placed right-aligned caption into a reported overflow. */
 const SVG_EDGE_PADDING = PANEL_PADDING;
 
 /* Glyph ink, not slack. A right-anchored caption ends exactly at the panel edge,
-   and the final glyph can paint a fraction past its own advance — by more under
+   and the final glyph can paint a fraction past its own advance - by more under
    the runner's fonts than under macOS, which is why the check passed locally and
    failed CI on every right-hand cell. */
 const INK_TOLERANCE = 1.5;
@@ -264,7 +264,7 @@ const main = async () => {
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
 
-  /* WHY channel: "chrome" — driving the Chrome already on the machine avoids
+  /* WHY channel: "chrome" - driving the Chrome already on the machine avoids
      playwright-core's ~150MB browser download, and it is the browser that
      actually renders the page for a reader. GitHub's ubuntu runners ship it too,
      so local and CI use the same engine. */
@@ -327,7 +327,7 @@ const main = async () => {
         if (image.natural > 0 && image.rendered < image.natural * 0.9) {
           failures.push({
             check: `${label} image scaling`,
-            detail: `${image.src} rendered at ${image.rendered}px from ${image.natural}px — text will shrink, needs a narrow variant`,
+            detail: `${image.src} rendered at ${image.rendered}px from ${image.natural}px - text will shrink, needs a narrow variant`,
           });
         }
       }
