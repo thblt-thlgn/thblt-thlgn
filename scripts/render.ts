@@ -50,6 +50,26 @@ const zFilms = z.object({
   }),
 });
 
+/* Only used by --offline, to replay a previous fetch. The live path takes these
+   shapes straight from lib/sources, so these schemas exist to prove a cached
+   file still matches rather than to define the shape. */
+const zVinyl = z.object({
+  records: z.number(),
+  vinylShare: z.number(),
+  genres: z.array(z.object({ name: z.string(), count: z.number() })),
+  topArtists: z.array(z.string()),
+  topArtistCount: z.number(),
+  gapDecades: z.array(z.number()),
+  firstDecade: z.number(),
+});
+
+const zRain = z.object({
+  end: z.string(),
+  rainyDays: z.number(),
+  millimetres: z.number(),
+  daily: z.array(z.number()),
+});
+
 /* A file that is absent and a source that failed are different problems with
    different fixes, so they exit with different messages and neither ever
    degrades into a zero. */
@@ -115,6 +135,10 @@ const decadeList = (decades: number[]) => {
 
 const main = async () => {
   const dryRun = process.argv.includes("--dry-run");
+  /* Local layout iteration re-renders constantly and none of it depends on fresh
+     records or rainfall, so --offline replays the last fetch instead of asking
+     Discogs for the same 86 releases every time. Never used by the workflow. */
+  const offline = process.argv.includes("--offline");
   const today = new Date();
 
   const shipping = await readData("shipping", zShipping);
@@ -122,16 +146,21 @@ const main = async () => {
   const shape = await readData("shape", zShape);
   const films = await readData("films", zFilms);
 
-  const vinyl = await fetchVinyl(DISCOGS_USER);
-  const rain = await fetchRain(today);
-  await Bun.write(
-    `${ROOT}data/vinyl.json`,
-    `${JSON.stringify({ fetchedAt: today.toISOString(), ...vinyl }, null, 2)}\n`,
-  );
-  await Bun.write(
-    `${ROOT}data/rain.json`,
-    `${JSON.stringify({ fetchedAt: today.toISOString(), ...rain }, null, 2)}\n`,
-  );
+  const vinyl = offline
+    ? await readData("vinyl", zVinyl)
+    : await fetchVinyl(DISCOGS_USER);
+  const rain = offline ? await readData("rain", zRain) : await fetchRain(today);
+
+  if (!offline) {
+    await Bun.write(
+      `${ROOT}data/vinyl.json`,
+      `${JSON.stringify({ fetchedAt: today.toISOString(), ...vinyl }, null, 2)}\n`,
+    );
+    await Bun.write(
+      `${ROOT}data/rain.json`,
+      `${JSON.stringify({ fetchedAt: today.toISOString(), ...rain }, null, 2)}\n`,
+    );
+  }
 
   const tens = films.sample.distribution["10"];
   if (tens === undefined) {

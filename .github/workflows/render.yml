@@ -32,6 +32,23 @@ jobs:
       # bad night leaves yesterday's README in place.
       - run: bun run render
 
+      # Renders the result through GitHub's own /markdown endpoint and measures
+      # it in Chrome at 846px and 343px, light and dark. A layout that overflows
+      # a phone or leaves half the desktop column empty fails here, before the
+      # commit step — so it can never reach the profile.
+      - name: Verify the rendered layout
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bun run preview --check-links
+
+      - name: Upload the preview screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: preview
+          path: preview/*.png
+          retention-days: 7
+
       # Committing README.md nightly is also what keeps the schedule trigger
       # alive: GitHub disables it after 60 days without a commit.
       - name: Commit the rendered page
