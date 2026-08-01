@@ -17,8 +17,7 @@ Of the `4,644` contributions on this profile in the past year,
 
 <br>
 
-<sub>Activity is a rolling 365 days · films as of July 2026 · rainfall 1 Jan → 29 July 2026
-· rebuilt nightly, last on 1 August 2026</sub>
+<sub>Rebuilt nightly by GitHub Actions · last on 1 August 2026</sub>
 
 <br>
 

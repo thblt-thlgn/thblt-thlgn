@@ -1,7 +1,7 @@
-import { format } from "date-fns";
+import { addDays, format, parseISO } from "date-fns";
 import { z } from "zod";
 import { cellsFor } from "./lib/grid-cells";
-import { gridSvg } from "./lib/grid-svg";
+import { type ChartPoint, gridSvg } from "./lib/grid-svg";
 import { fetchRain, fetchVinyl } from "./lib/sources";
 import { renderTemplate } from "./lib/template";
 
@@ -58,6 +58,7 @@ const zVinyl = z.object({
 });
 
 const zRain = z.object({
+  start: z.string(),
   end: z.string(),
   rainyDays: z.number(),
   millimetres: z.number(),
@@ -111,9 +112,18 @@ const NARROW = 343;
 type GridProps = {
   values: Record<string, string>;
   languages: { name: string; share: number }[];
-  activity: number[];
-  rain: number[];
+  activity: ChartPoint[];
+  rain: ChartPoint[];
 };
+
+/* The month tick is attached to the first day of each month; the renderer places
+   it without needing to know anything about dates. */
+const toPoints = (series: { date: Date; value: number }[]): ChartPoint[] =>
+  series.map(({ date, value }) =>
+    date.getDate() === 1
+      ? { value, month: `${format(date, "MMM").toLowerCase()}.` }
+      : { value },
+  );
 
 const writeGrid = async (props: GridProps) => {
   const cells = cellsFor(props);
@@ -223,8 +233,15 @@ const main = async () => {
   await writeGrid({
     values,
     languages: shipping.languages,
-    activity: shipping.daily.map((day) => day.count),
-    rain: rain.daily,
+    activity: toPoints(
+      shipping.daily.map((day) => ({ date: parseISO(day.date), value: day.count })),
+    ),
+    rain: toPoints(
+      rain.daily.map((value, index) => ({
+        date: addDays(parseISO(rain.start), index),
+        value,
+      })),
+    ),
   });
 
   /* Only what the markdown itself renders. Every other figure now lives in the
@@ -235,8 +252,6 @@ const main = async () => {
     contributionsPrivate: need("contributionsPrivate"),
     /* Busts GitHub image caching, which keys on the URL: the file changes
        nightly but assets/grid-wide-light.svg does not. */
-    filmsAsOf: need("filmsAsOf"),
-    rainEndDate: need("rainEndDate"),
     renderedOn: format(today, "d MMMM yyyy"),
     assetVersion: format(today, "yyyyMMdd"),
     /* The grid is an image, so this alt text is the only form these numbers take
