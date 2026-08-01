@@ -28,8 +28,6 @@
 
 <!-- block:header -->
 
-**Thibault Théologien** · CTO [@Aïstos](https://aistos.fr) · Paris
-
 I build debt-collection software that tries hard not to be unpleasant about it.
 
 Of the `{{contributionsTotal}}` contributions on this profile in the past year,
@@ -47,11 +45,6 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
   <img alt="{{gridAlt}}" src="assets/grid-wide-light.svg?v={{assetVersion}}" width="840">
 </picture>
 
-<br>
-
-<!-- Each cell states its own window; this is the one fact that belongs to the page. -->
-<sub>Rebuilt nightly by GitHub Actions · last on {{renderedOn}}</sub>
-
 <!-- block:footer -->
 
 <br>
@@ -60,6 +53,11 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
 
-[Photographs](https://thibault.theologien.fr) ·
-[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
-[Aïstos](https://aistos.fr)
+<!--
+  Real favicons, fetched once and committed rather than hot-linked. A live badge
+  or favicon service would be a third-party uptime dependency that renders as a
+  broken image the day it goes down, for decoration.
+-->
+[<img src="assets/icons/photographs.png" width="14" height="14"> Photographs](https://thibault.theologien.fr) ·
+[<img src="assets/icons/linkedin.png" width="14" height="14"> LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
+[<img src="assets/icons/aistos.png" width="14" height="14"> Aïstos](https://aistos.fr)

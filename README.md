@@ -1,5 +1,3 @@
-**Thibault Théologien** · CTO [@Aïstos](https://aistos.fr) · Paris
-
 I build debt-collection software that tries hard not to be unpleasant about it.
 
 Of the `4,644` contributions on this profile in the past year,
@@ -17,14 +15,10 @@ Of the `4,644` contributions on this profile in the past year,
 
 <br>
 
-<sub>Rebuilt nightly by GitHub Actions · last on 1 August 2026</sub>
-
-<br>
-
 **We're hiring in Paris** — Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
 Come build the review-driven learning system for our AI agents. →
 [our openings](https://www.linkedin.com/company/aistos/jobs/)
 
-[Photographs](https://thibault.theologien.fr) ·
-[LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
-[Aïstos](https://aistos.fr)
+[<img src="assets/icons/photographs.png" width="14" height="14"> Photographs](https://thibault.theologien.fr) ·
+[<img src="assets/icons/linkedin.png" width="14" height="14"> LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
+[<img src="assets/icons/aistos.png" width="14" height="14"> Aïstos](https://aistos.fr)
