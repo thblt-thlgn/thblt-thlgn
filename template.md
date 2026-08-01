@@ -49,9 +49,8 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 
 <br>
 
-<!-- Every window the grid uses, in one place rather than repeated in each cell. -->
-<sub>Activity is a rolling 365 days · films as of {{filmsAsOf}} · rainfall 1 Jan → {{rainEndDate}}
-· rebuilt nightly, last on {{renderedOn}}</sub>
+<!-- Each cell states its own window; this is the one fact that belongs to the page. -->
+<sub>Rebuilt nightly by GitHub Actions · last on {{renderedOn}}</sub>
 
 <!-- block:footer -->
 
