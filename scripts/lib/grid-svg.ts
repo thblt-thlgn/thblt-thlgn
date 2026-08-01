@@ -75,11 +75,11 @@ const SANS =
 const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace";
 
 const PANEL_RADIUS = 10;
-const PANEL_PADDING = 18;
+export const PANEL_PADDING = 18;
 const GUTTER = 16;
 const ROW_GAP = 16;
 const TITLE_SIZE = 16.5;
-const CAPTION_SIZE = 10.5;
+const CAPTION_SIZE = 9.5;
 const AXIS_SIZE = 9;
 const AXIS_GAP = 13;
 const LINE_SIZE = 13;
@@ -235,7 +235,7 @@ const renderCell = ({ cell, x, y, width, height, theme }: CellProps) => {
   /* Pinned to the panel floor rather than trailing the content, so the window
      labels line up across cells instead of floating at five heights. */
   parts.push(
-    `<text x="${inner}" y="${y + height - PANEL_PADDING}" font-family="${SANS}" font-size="${CAPTION_SIZE}" fill="${colours.dim}">${escape(cell.caption)}</text>`,
+    `<text x="${x + width - PANEL_PADDING}" y="${y + height - PANEL_PADDING}" text-anchor="end" font-family="${SANS}" font-size="${CAPTION_SIZE}" fill="${colours.dim}">${escape(cell.caption)}</text>`,
   );
   return parts.join("\n  ");
 };
