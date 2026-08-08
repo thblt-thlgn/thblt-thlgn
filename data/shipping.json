@@ -1,22 +1,18 @@
 {
-  "generatedAt": "2026-08-07T04:54:45.701Z",
+  "generatedAt": "2026-08-08T04:10:39.025Z",
   "window": {
-    "from": "2025-08-07T04:54:45.701Z",
-    "to": "2026-08-07T04:54:45.701Z",
+    "from": "2025-08-08T04:10:39.025Z",
+    "to": "2026-08-08T04:10:39.025Z",
     "days": 365
   },
   "contributions": {
-    "total": 4925,
-    "private": 4890,
+    "total": 4929,
+    "private": 4894,
     "public": 35,
-    "activeDays": 230,
+    "activeDays": 229,
     "calendarDays": 366
   },
   "daily": [
-    {
-      "date": "2025-08-07",
-      "count": 2
-    },
     {
       "date": "2025-08-08",
       "count": 0
@@ -1467,7 +1463,7 @@
     },
     {
       "date": "2026-08-05",
-      "count": 52
+      "count": 51
     },
     {
       "date": "2026-08-06",
@@ -1475,19 +1471,23 @@
     },
     {
       "date": "2026-08-07",
-      "count": 1
+      "count": 8
+    },
+    {
+      "date": "2026-08-08",
+      "count": 0
     }
   ],
   "repositories": {
     "scanned": 53,
-    "active": 14,
+    "active": 13,
     "private": 38,
     "public": 15
   },
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 396178,
+      "lines": 394774,
       "share": 94.4
     },
     {
@@ -1497,7 +1497,7 @@
     },
     {
       "name": "Shell",
-      "lines": 5893,
+      "lines": 5926,
       "share": 1.4
     },
     {
@@ -1517,8 +1517,8 @@
     },
     {
       "name": "CSS",
-      "lines": 1056,
-      "share": 0.3
+      "lines": 1033,
+      "share": 0.2
     },
     {
       "name": "GritQL",
@@ -1527,7 +1527,7 @@
     },
     {
       "name": "HTML",
-      "lines": 192,
+      "lines": 174,
       "share": 0
     }
   ]

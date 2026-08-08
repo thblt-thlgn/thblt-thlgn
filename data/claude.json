@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-08-07T04:54:45.701Z",
+  "generatedAt": "2026-08-08T04:10:39.025Z",
   "window": {
-    "from": "2025-08-07T04:54:45.701Z",
-    "to": "2026-08-07T04:54:45.701Z",
+    "from": "2025-08-08T04:10:39.025Z",
+    "to": "2026-08-08T04:10:39.025Z",
     "days": 365
   },
   "commits": {
-    "total": 4868,
-    "coAuthored": 1916,
-    "share": 39.4
+    "total": 4993,
+    "coAuthored": 1917,
+    "share": 38.4
   },
   "lines": {
-    "added": 300422,
+    "added": 300494,
     "removed": 141096
   },
   "models": [
@@ -29,7 +29,7 @@
     },
     {
       "name": "Opus 5",
-      "commits": 141
+      "commits": 142
     },
     {
       "name": "Opus 4.7",
