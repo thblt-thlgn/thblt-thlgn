@@ -1,22 +1,18 @@
 {
-  "generatedAt": "2026-08-17T03:49:45.600Z",
+  "generatedAt": "2026-08-18T03:43:53.551Z",
   "window": {
-    "from": "2025-08-17T03:49:45.600Z",
-    "to": "2026-08-17T03:49:45.600Z",
+    "from": "2025-08-18T03:43:53.551Z",
+    "to": "2026-08-18T03:43:53.551Z",
     "days": 365
   },
   "contributions": {
-    "total": 5153,
-    "private": 5110,
-    "public": 43,
-    "activeDays": 237,
+    "total": 5417,
+    "private": 5250,
+    "public": 167,
+    "activeDays": 238,
     "calendarDays": 366
   },
   "daily": [
-    {
-      "date": "2025-08-17",
-      "count": 0
-    },
     {
       "date": "2025-08-18",
       "count": 0
@@ -1363,7 +1359,7 @@
     },
     {
       "date": "2026-07-20",
-      "count": 20
+      "count": 24
     },
     {
       "date": "2026-07-21",
@@ -1419,51 +1415,51 @@
     },
     {
       "date": "2026-08-03",
-      "count": 78
+      "count": 80
     },
     {
       "date": "2026-08-04",
-      "count": 112
+      "count": 123
     },
     {
       "date": "2026-08-05",
-      "count": 51
-    },
-    {
-      "date": "2026-08-06",
-      "count": 12
-    },
-    {
-      "date": "2026-08-07",
-      "count": 10
-    },
-    {
-      "date": "2026-08-08",
-      "count": 60
-    },
-    {
-      "date": "2026-08-09",
-      "count": 6
-    },
-    {
-      "date": "2026-08-10",
       "count": 56
     },
     {
+      "date": "2026-08-06",
+      "count": 44
+    },
+    {
+      "date": "2026-08-07",
+      "count": 41
+    },
+    {
+      "date": "2026-08-08",
+      "count": 106
+    },
+    {
+      "date": "2026-08-09",
+      "count": 11
+    },
+    {
+      "date": "2026-08-10",
+      "count": 93
+    },
+    {
       "date": "2026-08-11",
-      "count": 26
+      "count": 64
     },
     {
       "date": "2026-08-12",
-      "count": 16
-    },
-    {
-      "date": "2026-08-13",
       "count": 24
     },
     {
+      "date": "2026-08-13",
+      "count": 45
+    },
+    {
       "date": "2026-08-14",
-      "count": 33
+      "count": 49
     },
     {
       "date": "2026-08-15",
@@ -1475,39 +1471,43 @@
     },
     {
       "date": "2026-08-17",
+      "count": 8
+    },
+    {
+      "date": "2026-08-18",
       "count": 0
     }
   ],
   "repositories": {
     "scanned": 39,
     "active": 14,
-    "private": 24,
-    "public": 15
+    "private": 23,
+    "public": 16
   },
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 213763,
+      "lines": 219284,
       "share": 88.8
     },
     {
       "name": "SQL",
-      "lines": 11270,
-      "share": 4.7
+      "lines": 11469,
+      "share": 4.6
     },
     {
       "name": "Shell",
-      "lines": 9870,
+      "lines": 10196,
       "share": 4.1
     },
     {
       "name": "Prisma",
-      "lines": 1758,
+      "lines": 1778,
       "share": 0.7
     },
     {
       "name": "JavaScript",
-      "lines": 1626,
+      "lines": 1654,
       "share": 0.7
     },
     {
@@ -1522,7 +1522,7 @@
     },
     {
       "name": "GritQL",
-      "lines": 374,
+      "lines": 481,
       "share": 0.2
     },
     {
