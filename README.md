@@ -1,16 +1,16 @@
 I build debt-collection software that tries hard not to be unpleasant about it.
 
-Of the `5,592` contributions on this profile in the past year,
-`5,425` are anonymous green squares. You'll have to take my word for it -
+Of the `5,590` contributions on this profile in the past year,
+`5,423` are anonymous green squares. You'll have to take my word for it -
 *ou me croire sur parole.*
 
 <br>
 
 <picture>
-  <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v=20260904">
-  <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v=20260904">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/grid-wide-dark.svg?v=20260904">
-  <img alt="5,592 contributions across 14 repositories, almost all private. 2,416 of my 5,499 commits were co-authored with Claude (44%). 1,103 films rated, 86 records, 86 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20260904" width="840">
+  <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v=20260905">
+  <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v=20260905">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/grid-wide-dark.svg?v=20260905">
+  <img alt="5,590 contributions across 14 repositories, almost all private. 2,416 of my 5,497 commits were co-authored with Claude (44%). 1,103 films rated, 86 records, 86 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20260905" width="840">
 </picture>
 
 <br><br><br>
