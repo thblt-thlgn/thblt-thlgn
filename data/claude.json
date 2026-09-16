@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-15T08:24:56.410Z",
+  "generatedAt": "2026-09-16T08:18:43.873Z",
   "window": {
-    "from": "2025-09-15T08:24:56.410Z",
-    "to": "2026-09-15T08:24:56.410Z",
+    "from": "2025-09-16T08:18:43.873Z",
+    "to": "2026-09-16T08:18:43.873Z",
     "days": 365
   },
   "commits": {
-    "total": 5559,
-    "coAuthored": 2483,
-    "share": 44.7
+    "total": 5578,
+    "coAuthored": 2501,
+    "share": 44.8
   },
   "lines": {
-    "added": 347250,
-    "removed": 156921
+    "added": 348312,
+    "removed": 157167
   },
   "models": [
     {
@@ -21,7 +21,7 @@
     },
     {
       "name": "Opus 5",
-      "commits": 779
+      "commits": 796
     },
     {
       "name": "Opus 4.6",
@@ -49,7 +49,7 @@
     },
     {
       "name": "Haiku 4.5",
-      "commits": 4
+      "commits": 5
     }
   ]
 }
