@@ -1,12 +1,12 @@
 {
-  "fetchedAt": "2026-09-22T08:42:49.862Z",
+  "fetchedAt": "2026-09-23T08:19:45.286Z",
   "start": "2026-01-01",
-  "end": "2026-09-19",
-  "days": 262,
+  "end": "2026-09-20",
+  "days": 263,
   "missingDays": 0,
   "rainyDays": 88,
-  "daysWithAnyRain": 141,
-  "millimetres": 514,
+  "daysWithAnyRain": 142,
+  "millimetres": 514.4,
   "wettestDay": 26.1,
   "rainyDayThresholdMm": 1,
   "daily": [
@@ -271,6 +271,7 @@
     0.3,
     0,
     0,
-    0
+    0,
+    0.4
   ]
 }
