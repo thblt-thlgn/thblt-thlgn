@@ -59,7 +59,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md data
+          git add README.md data assets
+          # The grid SVGs went unstaged here for 7 weeks and the card silently froze.
+          leftover="$(git diff --name-only; git ls-files --others --exclude-standard)"
+          if [ -n "$leftover" ]; then
+            echo "::error::render wrote files this step does not stage:"
+            echo "$leftover"
+            exit 1
+          fi
           if git diff --quiet --cached; then
             echo "no change"
           else
