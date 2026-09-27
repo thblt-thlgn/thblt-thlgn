@@ -1,26 +1,18 @@
 {
-  "generatedAt": "2026-09-26T08:20:35.729Z",
+  "generatedAt": "2026-09-27T08:58:08.134Z",
   "window": {
-    "from": "2025-09-26T08:20:35.729Z",
-    "to": "2026-09-26T08:20:35.729Z",
+    "from": "2025-09-27T08:58:08.134Z",
+    "to": "2026-09-27T08:58:08.134Z",
     "days": 365
   },
   "contributions": {
-    "total": 6488,
-    "private": 6320,
+    "total": 6476,
+    "private": 6308,
     "public": 168,
-    "activeDays": 247,
-    "calendarDays": 366
+    "activeDays": 246,
+    "calendarDays": 365
   },
   "daily": [
-    {
-      "date": "2025-09-26",
-      "count": 12
-    },
-    {
-      "date": "2025-09-27",
-      "count": 0
-    },
     {
       "date": "2025-09-28",
       "count": 0
@@ -1475,6 +1467,10 @@
     },
     {
       "date": "2026-09-26",
+      "count": 0
+    },
+    {
+      "date": "2026-09-27",
       "count": 0
     }
   ],
