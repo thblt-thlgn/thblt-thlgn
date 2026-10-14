@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-10-13T10:08:37.241Z",
+  "generatedAt": "2026-10-14T08:25:32.688Z",
   "window": {
-    "from": "2025-10-13T10:08:37.241Z",
-    "to": "2026-10-13T10:08:37.241Z",
+    "from": "2025-10-14T08:25:32.688Z",
+    "to": "2026-10-14T08:25:32.688Z",
     "days": 365
   },
   "commits": {
-    "total": 7135,
-    "coAuthored": 3349,
-    "share": 46.9
+    "total": 7152,
+    "coAuthored": 3337,
+    "share": 46.7
   },
   "lines": {
-    "added": 415360,
-    "removed": 177006
+    "added": 414215,
+    "removed": 176704
   },
   "models": [
     {
       "name": "Opus 5",
-      "commits": 1018
+      "commits": 1012
     },
     {
       "name": "Opus 4.8",
@@ -33,7 +33,7 @@
     },
     {
       "name": "Fable 5",
-      "commits": 154
+      "commits": 148
     },
     {
       "name": "Opus 4.7",
