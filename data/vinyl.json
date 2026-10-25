@@ -1,36 +1,36 @@
 {
-  "fetchedAt": "2026-10-24T08:19:06.659Z",
-  "records": 86,
-  "vinyl": 86,
+  "fetchedAt": "2026-10-25T08:37:12.292Z",
+  "records": 90,
+  "vinyl": 90,
   "vinylShare": 100,
   "genres": [
     {
       "name": "Rock",
-      "count": 54
+      "count": 57
     },
     {
       "name": "Pop",
-      "count": 22
+      "count": 24
     },
     {
       "name": "Funk / Soul",
-      "count": 20
+      "count": 22
     },
     {
       "name": "Electronic",
       "count": 12
     },
     {
+      "name": "Jazz",
+      "count": 8
+    },
+    {
       "name": "Hip Hop",
       "count": 8
     },
     {
-      "name": "Jazz",
-      "count": 7
-    },
-    {
       "name": "Blues",
-      "count": 5
+      "count": 6
     },
     {
       "name": "Folk, World, & Country",
@@ -42,17 +42,15 @@
     }
   ],
   "topArtists": [
-    "Dire Straits",
-    "Fleetwood Mac",
     "Michael Kiwanuka"
   ],
-  "topArtistCount": 4,
+  "topArtistCount": 5,
   "decades": {
-    "1970": 20,
-    "1980": 12,
+    "1970": 21,
+    "1980": 13,
     "2000": 2,
     "2010": 18,
-    "2020": 31
+    "2020": 33
   },
   "gapDecades": [
     1990
