@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-11-06T10:25:55.773Z",
+  "generatedAt": "2026-11-07T09:39:15.051Z",
   "window": {
-    "from": "2025-11-06T10:25:55.773Z",
-    "to": "2026-11-06T10:25:55.773Z",
+    "from": "2025-11-07T09:39:15.051Z",
+    "to": "2026-11-07T09:39:15.051Z",
     "days": 365
   },
   "commits": {
-    "total": 9905,
-    "coAuthored": 3291,
-    "share": 33.2
+    "total": 9992,
+    "coAuthored": 3272,
+    "share": 32.7
   },
   "lines": {
-    "added": 405058,
-    "removed": 174217
+    "added": 403876,
+    "removed": 173274
   },
   "models": [
     {
