@@ -1,31 +1,31 @@
 {
-  "fetchedAt": "2026-11-03T11:11:04.690Z",
-  "records": 90,
-  "vinyl": 90,
+  "fetchedAt": "2026-11-09T09:28:39.313Z",
+  "records": 93,
+  "vinyl": 93,
   "vinylShare": 100,
   "genres": [
     {
       "name": "Rock",
-      "count": 57
+      "count": 58
     },
     {
       "name": "Pop",
-      "count": 24
+      "count": 26
     },
     {
       "name": "Funk / Soul",
-      "count": 22
+      "count": 24
     },
     {
       "name": "Electronic",
-      "count": 12
-    },
-    {
-      "name": "Jazz",
-      "count": 8
+      "count": 13
     },
     {
       "name": "Hip Hop",
+      "count": 9
+    },
+    {
+      "name": "Jazz",
       "count": 8
     },
     {
@@ -47,10 +47,10 @@
   "topArtistCount": 5,
   "decades": {
     "1970": 21,
-    "1980": 13,
+    "1980": 14,
     "2000": 2,
     "2010": 18,
-    "2020": 33
+    "2020": 34
   },
   "gapDecades": [
     1990
