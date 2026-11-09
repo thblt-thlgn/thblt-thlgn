@@ -49,10 +49,6 @@ Of the `{{contributionsTotal}}` contributions on this profile in the past year,
 
 <br><br><br>
 
-**We're hiring in Paris** - Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
-Come build the review-driven learning system for our AI agents. →
-[our openings](https://www.linkedin.com/company/aistos/jobs/)
-
 <!--
   Real favicons, fetched once and committed rather than hot-linked. A live badge
   or favicon service would be a third-party uptime dependency that renders as a

@@ -15,10 +15,6 @@ Of the `8,325` contributions on this profile in the past year,
 
 <br><br><br>
 
-**We're hiring in Paris** - Senior Fullstack TypeScript (full-remote possible) and a Product Owner.
-Come build the review-driven learning system for our AI agents. →
-[our openings](https://www.linkedin.com/company/aistos/jobs/)
-
 [<img src="assets/icons/photographs.png" width="14" height="14"> Photographs](https://thibault.theologien.fr) ·
 [<img src="assets/icons/linkedin.png" width="14" height="14"> LinkedIn](https://www.linkedin.com/in/thibault-theologien/) ·
 [<img src="assets/icons/aistos.png" width="14" height="14"> Aïstos](https://aistos.fr)
