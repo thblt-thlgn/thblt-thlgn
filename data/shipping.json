@@ -1,22 +1,18 @@
 {
-  "generatedAt": "2026-11-09T10:56:56.187Z",
+  "generatedAt": "2026-11-10T10:48:20.912Z",
   "window": {
-    "from": "2025-11-09T10:56:56.187Z",
-    "to": "2026-11-09T10:56:56.187Z",
+    "from": "2025-11-10T10:48:20.912Z",
+    "to": "2026-11-10T10:48:20.912Z",
     "days": 365
   },
   "contributions": {
-    "total": 9476,
-    "private": 9296,
+    "total": 9514,
+    "private": 9334,
     "public": 180,
-    "activeDays": 251,
+    "activeDays": 252,
     "calendarDays": 366
   },
   "daily": [
-    {
-      "date": "2025-11-09",
-      "count": 0
-    },
     {
       "date": "2025-11-10",
       "count": 42
@@ -1471,34 +1467,43 @@
     },
     {
       "date": "2026-11-08",
-      "count": 5
+      "count": 8
     },
     {
       "date": "2026-11-09",
-      "count": 20
+      "count": 54
+    },
+    {
+      "date": "2026-11-10",
+      "count": 1
     }
   ],
   "repositories": {
-    "scanned": 41,
-    "active": 15,
-    "private": 25,
+    "scanned": 42,
+    "active": 16,
+    "private": 26,
     "public": 16
   },
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 507941,
-      "share": 88
+      "lines": 508599,
+      "share": 87
     },
     {
       "name": "Shell",
-      "lines": 37258,
-      "share": 6.5
+      "lines": 38340,
+      "share": 6.6
     },
     {
       "name": "SQL",
-      "lines": 20408,
+      "lines": 20434,
       "share": 3.5
+    },
+    {
+      "name": "JavaScript",
+      "lines": 6113,
+      "share": 1
     },
     {
       "name": "Prisma",
@@ -1506,8 +1511,8 @@
       "share": 0.5
     },
     {
-      "name": "JavaScript",
-      "lines": 2369,
+      "name": "CSS",
+      "lines": 2617,
       "share": 0.4
     },
     {
@@ -1517,7 +1522,7 @@
     },
     {
       "name": "HTML",
-      "lines": 1491,
+      "lines": 1667,
       "share": 0.3
     },
     {
@@ -1529,11 +1534,6 @@
       "name": "GritQL",
       "lines": 1098,
       "share": 0.2
-    },
-    {
-      "name": "CSS",
-      "lines": 592,
-      "share": 0.1
     }
   ]
 }
