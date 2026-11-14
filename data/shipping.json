@@ -1,22 +1,18 @@
 {
-  "generatedAt": "2026-11-13T10:35:46.409Z",
+  "generatedAt": "2026-11-14T09:50:50.231Z",
   "window": {
-    "from": "2025-11-13T10:35:46.409Z",
-    "to": "2026-11-13T10:35:46.409Z",
+    "from": "2025-11-14T09:50:50.231Z",
+    "to": "2026-11-14T09:50:50.231Z",
     "days": 365
   },
   "contributions": {
-    "total": 9546,
-    "private": 9366,
+    "total": 9630,
+    "private": 9450,
     "public": 180,
-    "activeDays": 252,
+    "activeDays": 251,
     "calendarDays": 366
   },
   "daily": [
-    {
-      "date": "2025-11-13",
-      "count": 35
-    },
     {
       "date": "2025-11-14",
       "count": 18
@@ -1463,7 +1459,7 @@
     },
     {
       "date": "2026-11-10",
-      "count": 25
+      "count": 35
     },
     {
       "date": "2026-11-11",
@@ -1471,11 +1467,15 @@
     },
     {
       "date": "2026-11-12",
-      "count": 46
+      "count": 96
     },
     {
       "date": "2026-11-13",
-      "count": 7
+      "count": 66
+    },
+    {
+      "date": "2026-11-14",
+      "count": 0
     }
   ],
   "repositories": {
@@ -1487,18 +1487,18 @@
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 510866,
-      "share": 86.9
+      "lines": 522814,
+      "share": 87.2
     },
     {
       "name": "Shell",
-      "lines": 39185,
-      "share": 6.7
+      "lines": 39255,
+      "share": 6.5
     },
     {
       "name": "SQL",
       "lines": 20448,
-      "share": 3.5
+      "share": 3.4
     },
     {
       "name": "JavaScript",
