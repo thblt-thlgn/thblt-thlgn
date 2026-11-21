@@ -1,22 +1,18 @@
 {
-  "generatedAt": "2026-11-20T10:57:08.175Z",
+  "generatedAt": "2026-11-21T10:40:42.124Z",
   "window": {
-    "from": "2025-11-20T10:57:08.175Z",
-    "to": "2026-11-20T10:57:08.175Z",
+    "from": "2025-11-21T10:40:42.124Z",
+    "to": "2026-11-21T10:40:42.124Z",
     "days": 365
   },
   "contributions": {
-    "total": 9709,
-    "private": 9529,
-    "public": 180,
+    "total": 9718,
+    "private": 9536,
+    "public": 182,
     "activeDays": 253,
     "calendarDays": 366
   },
   "daily": [
-    {
-      "date": "2025-11-20",
-      "count": 13
-    },
     {
       "date": "2025-11-21",
       "count": 16
@@ -1467,7 +1463,7 @@
     },
     {
       "date": "2026-11-18",
-      "count": 61
+      "count": 62
     },
     {
       "date": "2026-11-19",
@@ -1475,6 +1471,10 @@
     },
     {
       "date": "2026-11-20",
+      "count": 21
+    },
+    {
+      "date": "2026-11-21",
       "count": 0
     }
   ],
@@ -1487,12 +1487,12 @@
   "languages": [
     {
       "name": "TypeScript",
-      "lines": 525116,
+      "lines": 525930,
       "share": 86.7
     },
     {
       "name": "Shell",
-      "lines": 42963,
+      "lines": 43203,
       "share": 7.1
     },
     {
@@ -1508,7 +1508,7 @@
     {
       "name": "Prisma",
       "lines": 2731,
-      "share": 0.5
+      "share": 0.4
     },
     {
       "name": "CSS",
