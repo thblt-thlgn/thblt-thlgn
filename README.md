@@ -7,10 +7,10 @@ Of the `9,702` contributions on this profile in the past year,
 <br>
 
 <picture>
-  <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v=20261126">
-  <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v=20261126">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/grid-wide-dark.svg?v=20261126">
-  <img alt="9,702 contributions across 16 repositories, almost all private. 3,271 of my 12,309 commits were co-authored with Claude (27%). 1,103 films rated, 97 records, 107 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20261126" width="840">
+  <source media="(max-width: 500px) and (prefers-color-scheme: dark)" srcset="assets/grid-narrow-dark.svg?v=20261128">
+  <source media="(max-width: 500px)" srcset="assets/grid-narrow-light.svg?v=20261128">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/grid-wide-dark.svg?v=20261128">
+  <img alt="9,702 contributions across 16 repositories, almost all private. 3,271 of my 12,309 commits were co-authored with Claude (27%). 1,103 films rated, 97 records, 108 rainy days in Paris this year." src="assets/grid-wide-light.svg?v=20261128" width="840">
 </picture>
 
 <br><br><br>
